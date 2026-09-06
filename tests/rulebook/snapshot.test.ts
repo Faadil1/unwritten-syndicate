@@ -3,7 +3,12 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { Rulebook } from "../../src/rulebook/rulebook.js";
-import { toDiskSnapshot, toPolicyRulebookSnapshot, writeSnapshotFile } from "../../src/rulebook/snapshot.js";
+import {
+  readSnapshotFile,
+  toDiskSnapshot,
+  toPolicyRulebookSnapshot,
+  writeSnapshotFile,
+} from "../../src/rulebook/snapshot.js";
 
 describe("rulebook snapshot serialization", () => {
   it("maps camelCase in-memory fields to the frozen snake_case on-disk field list", () => {
@@ -91,5 +96,38 @@ describe("rulebook snapshot serialization", () => {
     expect(policySnapshot.rules).toHaveLength(1);
     expect(policySnapshot.rules[0]!.id).toBe(active.id);
     expect(policySnapshot.rules[0]!.recommendedBehavior).toBe("RESOLVED_COMPLETED");
+  });
+
+  it("readSnapshotFile round-trips writeSnapshotFile's output back to an equivalent in-memory snapshot", () => {
+    const rb = new Rulebook();
+    rb.proposeCandidate(1, {
+      type: "authorship_signal",
+      conditions: [{ feature: "authorAssociation", operator: "equals", value: "CONTRIBUTOR" }],
+      recommendedBehavior: "RESOLVED_NO_NEW_WORK",
+      supportCount: 6,
+      successCount: 5,
+      failureCount: 1,
+    });
+    const original = rb.toVersionSnapshot("V1", 1, rb.computeMetrics(1, 6));
+    const dir = mkdtempSync(path.join(tmpdir(), "rulebook-snapshot-roundtrip-"));
+    try {
+      writeSnapshotFile(dir, original);
+      const result = readSnapshotFile(dir, "V1");
+      expect(result.available).toBe(true);
+      expect(result.snapshot).toEqual(original);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it("readSnapshotFile reports available:false rather than throwing when the version file does not exist", () => {
+    const dir = mkdtempSync(path.join(tmpdir(), "rulebook-snapshot-missing-"));
+    try {
+      const result = readSnapshotFile(dir, "V2");
+      expect(result.available).toBe(false);
+      expect(result.snapshot).toBeUndefined();
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 });

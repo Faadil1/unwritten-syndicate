@@ -8,6 +8,8 @@ import type {
   SplitName,
 } from "../contracts/types.js";
 import { HistoricalRecordStore } from "../data/historicalRecords.js";
+import type { Rule } from "../rulebook/types.js";
+import type { ToolHeuristicContext, ToolHeuristicHooks } from "../tools/toolHeuristics.js";
 import { scrambleRulebook } from "./permutation.js";
 
 /**
@@ -95,6 +97,41 @@ export function makeA2Predictor(
 ): Predictor {
   const scrambled = scrambleRulebook(rulebook, seed);
   return (input: PredictorInput) => withRulebook(input, scrambled);
+}
+
+/**
+ * A3: actual learned V3 Rulebook baseline plumbing. Structurally parallel to
+ * `makeA1Predictor` — same `store`/`topK` triple, same temporal contract, so
+ * the ONLY thing that can differ between A1 and A3 is what this function
+ * adds: Rulebook-driven gating (via `heuristics`, see
+ * src/rulebook/toolHeuristicAdapter.ts) of whether a search is even issued,
+ * plus handing the active rules themselves to `withPolicy`. `activeRules`
+ * must come from the same frozen V3 snapshot as `heuristics` was built from
+ * (see scripts/eval-dev-bakeoff.ts) — this function does not itself load or
+ * validate that pairing.
+ */
+export function makeA3Predictor(
+  store: HistoricalRecordStore,
+  topK: number,
+  activeRules: readonly Rule[],
+  heuristics: ToolHeuristicHooks,
+  withPolicy: (
+    input: PredictorInput,
+    activeRules: readonly Rule[],
+    history: readonly HistoricalRecord[],
+  ) => Promise<ResolutionDisposition> | ResolutionDisposition,
+): Predictor {
+  return (input: PredictorInput) => {
+    const ctx: ToolHeuristicContext = {
+      input,
+      searchesPerformedSoFar: 0,
+      lastResultCount: null,
+      currentConfidence: null,
+    };
+    const decision = heuristics.shouldSearch(ctx);
+    const history = decision.action === "SEARCH" ? store.findRecentPast(input.createdAt, topK) : [];
+    return withPolicy(input, activeRules, history);
+  };
 }
 
 export interface SplitDataset {

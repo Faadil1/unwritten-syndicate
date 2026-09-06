@@ -60,7 +60,11 @@ export function verifyMaterializedHashes(): { available: boolean; results: HashC
  * treat `available: false` as expected, not as failure.
  */
 export function verifyPrivateArtifactHashes(): { available: boolean; results: HashCheckResult[] } {
-  if (!existsSync(PRIVATE_ARTIFACTS_MANIFEST_FILE)) {
+  // The manifest itself IS committed (it's an audit record), but the private
+  // files it describes are gitignored and only exist locally once
+  // `npm run data:materialize` has been run on this machine — so gate
+  // availability on the private directory too, not just the manifest.
+  if (!existsSync(PRIVATE_ARTIFACTS_MANIFEST_FILE) || !existsSync(PRIVATE_DIR)) {
     return { available: false, results: [] };
   }
   const recorded = JSON.parse(readFileSync(PRIVATE_ARTIFACTS_MANIFEST_FILE, "utf8")) as Record<

@@ -121,10 +121,17 @@ describe("HistoricalSearchTool — instrumentation", () => {
   });
 });
 
-describe("HistoricalSearchTool — no live GitHub, fixtures until materialization", () => {
-  it("buildHistoricalSearchToolFromTrain reports unavailable rather than fetching live data (data/train.jsonl not yet materialized)", () => {
+describe("HistoricalSearchTool — real TRAIN materialization (GATE 02 has landed)", () => {
+  it("buildHistoricalSearchToolFromTrain reports available and builds a TRAIN-provenance tool now that data/train.jsonl exists", () => {
     const result = buildHistoricalSearchToolFromTrain();
-    expect(result.available).toBe(false);
-    expect(result.tool).toBeUndefined();
+    expect(result.available).toBe(true);
+    expect(result.tool).toBeDefined();
+    expect(result.tool!.corpusProvenance).toBe("TRAIN");
+    expect(result.missingNumbers).toEqual([]);
+  });
+
+  it("the TRAIN-backed corpus has no live-GitHub involvement — every record came from the frozen materialized file", () => {
+    const result = buildHistoricalSearchToolFromTrain();
+    expect(result.tool!.corpusSize).toBeGreaterThan(0);
   });
 });

@@ -46,10 +46,13 @@ export interface ToolHeuristicHooks {
 
 /**
  * Mechanical placeholder hooks — NOT a learned policy. Every hook always
- * defers to "search," uniformly, regardless of context. This exists so
- * predictor plumbing can be wired and tested against a stable hook shape
- * before the Rulebook/learning-engine session supplies a real, learned
- * implementation of ToolHeuristicHooks.
+ * defers to "search," uniformly, regardless of context. A real, learned
+ * implementation now exists (see src/rulebook/toolHeuristicAdapter.ts
+ * createRulebookToolHeuristics) and is the canonical A3 policy; this
+ * passthrough must only be used as a test fixture / fallback when no
+ * Rulebook is available (e.g. A0/A1, or unit tests exercising this module in
+ * isolation), never substituted for the real adapter in the A3 causal
+ * condition.
  */
 export const PASSTHROUGH_TOOL_HEURISTICS: ToolHeuristicHooks = {
   shouldSearch: () => ({

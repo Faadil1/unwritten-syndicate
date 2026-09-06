@@ -9,14 +9,14 @@
         {
           "feature": "authorAssociation",
           "operator": "equals",
-          "value": "CONTRIBUTOR"
+          "value": "NONE"
         }
       ],
-      "recommended_behavior": "RESOLVED_NO_NEW_WORK",
-      "confidence": 0.7,
-      "support_count": 8,
-      "success_count": 6,
-      "failure_count": 2,
+      "recommended_behavior": "RESOLVED_COMPLETED",
+      "confidence": 0.9,
+      "support_count": 108,
+      "success_count": 98,
+      "failure_count": 10,
       "contradiction_count": 0,
       "created_round": 1,
       "updated_round": 2,
@@ -29,14 +29,14 @@
         {
           "feature": "authorAssociation",
           "operator": "equals",
-          "value": "NONE"
+          "value": "CONTRIBUTOR"
         }
       ],
       "recommended_behavior": "RESOLVED_COMPLETED",
-      "confidence": 0.9,
-      "support_count": 8,
-      "success_count": 8,
-      "failure_count": 0,
+      "confidence": 0.84375,
+      "support_count": 30,
+      "success_count": 26,
+      "failure_count": 4,
       "contradiction_count": 0,
       "created_round": 1,
       "updated_round": 2,
@@ -49,14 +49,14 @@
         {
           "feature": "bodyLengthBucket",
           "operator": "equals",
-          "value": "short"
+          "value": "medium"
         }
       ],
-      "recommended_behavior": "RESOLVED_NO_NEW_WORK",
-      "confidence": 0.7,
-      "support_count": 8,
-      "success_count": 6,
-      "failure_count": 2,
+      "recommended_behavior": "RESOLVED_COMPLETED",
+      "confidence": 0.8852459016393442,
+      "support_count": 59,
+      "success_count": 53,
+      "failure_count": 6,
       "contradiction_count": 0,
       "created_round": 1,
       "updated_round": 2,
@@ -73,10 +73,10 @@
         }
       ],
       "recommended_behavior": "RESOLVED_COMPLETED",
-      "confidence": 0.9,
-      "support_count": 8,
-      "success_count": 8,
-      "failure_count": 0,
+      "confidence": 0.8970588235294118,
+      "support_count": 66,
+      "success_count": 60,
+      "failure_count": 6,
       "contradiction_count": 0,
       "created_round": 1,
       "updated_round": 2,
@@ -87,14 +87,15 @@
       "type": "content_shape_signal",
       "conditions": [
         {
-          "feature": "hasQuestionMark",
-          "operator": "truthy"
+          "feature": "bodyLengthBucket",
+          "operator": "equals",
+          "value": "short"
         }
       ],
-      "recommended_behavior": "RESOLVED_NO_NEW_WORK",
-      "confidence": 0.7,
-      "support_count": 8,
-      "success_count": 6,
+      "recommended_behavior": "RESOLVED_COMPLETED",
+      "confidence": 0.8,
+      "support_count": 13,
+      "success_count": 11,
       "failure_count": 2,
       "contradiction_count": 0,
       "created_round": 1,
@@ -106,14 +107,131 @@
       "type": "content_shape_signal",
       "conditions": [
         {
+          "feature": "titleLengthBucket",
+          "operator": "equals",
+          "value": "short"
+        }
+      ],
+      "recommended_behavior": "RESOLVED_COMPLETED",
+      "confidence": 0.8461538461538461,
+      "support_count": 11,
+      "success_count": 10,
+      "failure_count": 1,
+      "contradiction_count": 0,
+      "created_round": 1,
+      "updated_round": 2,
+      "status": "active"
+    },
+    {
+      "id": "rule-7",
+      "type": "content_shape_signal",
+      "conditions": [
+        {
+          "feature": "titleLengthBucket",
+          "operator": "equals",
+          "value": "medium"
+        }
+      ],
+      "recommended_behavior": "RESOLVED_COMPLETED",
+      "confidence": 0.9178082191780822,
+      "support_count": 71,
+      "success_count": 66,
+      "failure_count": 5,
+      "contradiction_count": 0,
+      "created_round": 1,
+      "updated_round": 2,
+      "status": "active"
+    },
+    {
+      "id": "rule-8",
+      "type": "content_shape_signal",
+      "conditions": [
+        {
+          "feature": "titleLengthBucket",
+          "operator": "equals",
+          "value": "long"
+        }
+      ],
+      "recommended_behavior": "RESOLVED_COMPLETED",
+      "confidence": 0.8448275862068966,
+      "support_count": 56,
+      "success_count": 48,
+      "failure_count": 8,
+      "contradiction_count": 0,
+      "created_round": 1,
+      "updated_round": 2,
+      "status": "active"
+    },
+    {
+      "id": "rule-9",
+      "type": "content_shape_signal",
+      "conditions": [
+        {
           "feature": "hasQuestionMark",
           "operator": "falsy"
         }
       ],
       "recommended_behavior": "RESOLVED_COMPLETED",
-      "confidence": 0.7222222222222222,
-      "support_count": 16,
-      "success_count": 12,
+      "confidence": 0.8658536585365854,
+      "support_count": 80,
+      "success_count": 70,
+      "failure_count": 10,
+      "contradiction_count": 0,
+      "created_round": 1,
+      "updated_round": 2,
+      "status": "active"
+    },
+    {
+      "id": "rule-10",
+      "type": "content_shape_signal",
+      "conditions": [
+        {
+          "feature": "hasQuestionMark",
+          "operator": "truthy"
+        }
+      ],
+      "recommended_behavior": "RESOLVED_COMPLETED",
+      "confidence": 0.9166666666666666,
+      "support_count": 58,
+      "success_count": 54,
+      "failure_count": 4,
+      "contradiction_count": 0,
+      "created_round": 1,
+      "updated_round": 2,
+      "status": "active"
+    },
+    {
+      "id": "rule-11",
+      "type": "content_shape_signal",
+      "conditions": [
+        {
+          "feature": "hasCodeBlock",
+          "operator": "falsy"
+        }
+      ],
+      "recommended_behavior": "RESOLVED_COMPLETED",
+      "confidence": 0.8641975308641975,
+      "support_count": 79,
+      "success_count": 69,
+      "failure_count": 10,
+      "contradiction_count": 0,
+      "created_round": 1,
+      "updated_round": 2,
+      "status": "active"
+    },
+    {
+      "id": "rule-12",
+      "type": "content_shape_signal",
+      "conditions": [
+        {
+          "feature": "hasCodeBlock",
+          "operator": "truthy"
+        }
+      ],
+      "recommended_behavior": "RESOLVED_COMPLETED",
+      "confidence": 0.9180327868852459,
+      "support_count": 59,
+      "success_count": 55,
       "failure_count": 4,
       "contradiction_count": 0,
       "created_round": 1,
@@ -124,47 +242,83 @@
   "provenance": {
     "rule-1": {
       "created_from_round": 1,
-      "evidence_example_count": 8,
+      "evidence_example_count": 53,
       "source_rule_ids": [],
-      "note": "Generalized from 4 TRAIN examples sharing authorAssociation=CONTRIBUTOR (purity 0.75)."
+      "note": "Generalized from 53 TRAIN examples sharing authorAssociation=NONE (purity 1.00)."
     },
     "rule-2": {
       "created_from_round": 1,
-      "evidence_example_count": 4,
+      "evidence_example_count": 16,
       "source_rule_ids": [],
-      "note": "Generalized from 4 TRAIN examples sharing authorAssociation=NONE (purity 1.00)."
+      "note": "Generalized from 16 TRAIN examples sharing authorAssociation=CONTRIBUTOR (purity 0.88)."
     },
     "rule-3": {
       "created_from_round": 1,
-      "evidence_example_count": 8,
+      "evidence_example_count": 31,
       "source_rule_ids": [],
-      "note": "Generalized from 4 TRAIN examples sharing bodyLengthBucket=short (purity 0.75)."
+      "note": "Generalized from 31 TRAIN examples sharing bodyLengthBucket=medium (purity 0.97)."
     },
     "rule-4": {
       "created_from_round": 1,
-      "evidence_example_count": 4,
+      "evidence_example_count": 32,
       "source_rule_ids": [],
-      "note": "Generalized from 4 TRAIN examples sharing bodyLengthBucket=long (purity 1.00)."
+      "note": "Generalized from 32 TRAIN examples sharing bodyLengthBucket=long (purity 0.97)."
     },
     "rule-5": {
       "created_from_round": 1,
-      "evidence_example_count": 8,
+      "evidence_example_count": 6,
       "source_rule_ids": [],
-      "note": "Generalized from 4 TRAIN examples sharing hasQuestionMark=true (purity 0.75)."
+      "note": "Generalized from 6 TRAIN examples sharing bodyLengthBucket=short (purity 1.00)."
     },
     "rule-6": {
       "created_from_round": 1,
       "evidence_example_count": 8,
       "source_rule_ids": [],
-      "note": "Generalized from 8 TRAIN examples sharing hasQuestionMark=false (purity 0.75)."
+      "note": "Generalized from 8 TRAIN examples sharing titleLengthBucket=short (purity 1.00)."
+    },
+    "rule-7": {
+      "created_from_round": 1,
+      "evidence_example_count": 38,
+      "source_rule_ids": [],
+      "note": "Generalized from 38 TRAIN examples sharing titleLengthBucket=medium (purity 0.95)."
+    },
+    "rule-8": {
+      "created_from_round": 1,
+      "evidence_example_count": 23,
+      "source_rule_ids": [],
+      "note": "Generalized from 23 TRAIN examples sharing titleLengthBucket=long (purity 1.00)."
+    },
+    "rule-9": {
+      "created_from_round": 1,
+      "evidence_example_count": 43,
+      "source_rule_ids": [],
+      "note": "Generalized from 43 TRAIN examples sharing hasQuestionMark=false (purity 0.95)."
+    },
+    "rule-10": {
+      "created_from_round": 1,
+      "evidence_example_count": 26,
+      "source_rule_ids": [],
+      "note": "Generalized from 26 TRAIN examples sharing hasQuestionMark=true (purity 1.00)."
+    },
+    "rule-11": {
+      "created_from_round": 1,
+      "evidence_example_count": 43,
+      "source_rule_ids": [],
+      "note": "Generalized from 43 TRAIN examples sharing hasCodeBlock=false (purity 0.98)."
+    },
+    "rule-12": {
+      "created_from_round": 1,
+      "evidence_example_count": 26,
+      "source_rule_ids": [],
+      "note": "Generalized from 26 TRAIN examples sharing hasCodeBlock=true (purity 0.96)."
     }
   },
   "metrics": {
-    "examples_seen": 24,
+    "examples_seen": 138,
     "candidate_rules": 0,
-    "active_rules": 6,
+    "active_rules": 12,
     "retired_rules": 0,
     "contradictions": 0,
-    "compression_ratio": 4
+    "compression_ratio": 11.5
   }
 }

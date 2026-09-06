@@ -1,7 +1,15 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import type { PolicyRule, RulebookSnapshot } from "../contracts/types.js";
-import type { Rule, RuleCondition, RuleProvenance, RulebookVersionSnapshot } from "./types.js";
+import type { ResolutionDisposition, PolicyRule, RulebookSnapshot } from "../contracts/types.js";
+import type {
+  Rule,
+  RuleCondition,
+  RuleProvenance,
+  RuleStatus,
+  RuleType,
+  RulebookVersionSnapshot,
+  SnapshotVersion,
+} from "./types.js";
 
 /**
  * On-disk shapes (memory/V*.json). snake_case, mirroring the field naming
@@ -102,6 +110,70 @@ export function writeSnapshotFile(dir: string, snapshot: RulebookVersionSnapshot
   const file = path.join(dir, `${snapshot.version}.json`);
   writeFileSync(file, `${JSON.stringify(toDiskSnapshot(snapshot), null, 2)}\n`, "utf8");
   return file;
+}
+
+function fromDiskRule(r: DiskRule): Rule {
+  return {
+    id: r.id,
+    type: r.type as RuleType,
+    conditions: r.conditions,
+    recommendedBehavior: r.recommended_behavior as ResolutionDisposition,
+    confidence: r.confidence,
+    supportCount: r.support_count,
+    successCount: r.success_count,
+    failureCount: r.failure_count,
+    contradictionCount: r.contradiction_count,
+    createdRound: r.created_round,
+    updatedRound: r.updated_round,
+    status: r.status as RuleStatus,
+  };
+}
+
+function fromDiskProvenance(p: DiskProvenance): RuleProvenance {
+  return {
+    createdFromRound: p.created_from_round,
+    evidenceExampleCount: p.evidence_example_count,
+    sourceRuleIds: p.source_rule_ids,
+    ...(p.note !== undefined ? { note: p.note } : {}),
+  };
+}
+
+/** Converts a committed on-disk (snake_case) snapshot back to its in-memory (camelCase) form — the exact inverse of `toDiskSnapshot`. */
+export function fromDiskSnapshot(disk: DiskSnapshot): RulebookVersionSnapshot {
+  const provenance: Record<string, RuleProvenance> = {};
+  for (const [id, p] of Object.entries(disk.provenance)) {
+    provenance[id] = fromDiskProvenance(p);
+  }
+  return {
+    version: disk.version as SnapshotVersion,
+    round: disk.round,
+    rules: disk.rules.map(fromDiskRule),
+    provenance,
+    metrics: {
+      examplesSeen: disk.metrics.examples_seen,
+      candidateRules: disk.metrics.candidate_rules,
+      activeRules: disk.metrics.active_rules,
+      retiredRules: disk.metrics.retired_rules,
+      contradictions: disk.metrics.contradictions,
+      compressionRatio: disk.metrics.compression_ratio,
+    },
+  };
+}
+
+/**
+ * Reads `<dir>/<version>.json` (written by `writeSnapshotFile`) back into a
+ * `RulebookVersionSnapshot`. Returns `available: false` rather than
+ * throwing if the file does not exist yet, mirroring this repo's existing
+ * "don't fabricate a result" convention (see src/data/predictorInput.ts).
+ */
+export function readSnapshotFile(
+  dir: string,
+  version: SnapshotVersion,
+): { available: boolean; snapshot?: RulebookVersionSnapshot } {
+  const file = path.join(dir, `${version}.json`);
+  if (!existsSync(file)) return { available: false };
+  const disk = JSON.parse(readFileSync(file, "utf8")) as DiskSnapshot;
+  return { available: true, snapshot: fromDiskSnapshot(disk) };
 }
 
 function describeConditions(conditions: readonly RuleCondition[]): string {
