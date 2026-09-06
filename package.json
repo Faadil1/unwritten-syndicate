@@ -1,0 +1,25 @@
+{
+  "name": "unwritten-syndicate",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Data + Eval layer for the Unwritten issue-triage benchmark (GATE 01C frozen contract).",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "env:check": "tsx scripts/env-check.ts",
+    "data:verify": "tsx scripts/data-verify.ts",
+    "eval:cold": "tsx scripts/eval-cold.ts",
+    "eval:dev": "tsx scripts/eval-dev.ts",
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
