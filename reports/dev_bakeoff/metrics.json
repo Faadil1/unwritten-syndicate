@@ -1,26 +1,195 @@
 {
-  "status": "BLOCKED",
-  "reason": "MODEL_CREDENTIAL_REQUIRED — no authorized real-model route was available, so no real-model DEV inference was run for any of A0/A1/A2/A3.",
-  "conditions": {
-    "A0_COLD": null,
-    "A1_RAW_RAG": null,
-    "A2_SCRAMBLED_MEMORY_CONTROL": null,
-    "A3_UNWRITTEN": null
+  "split": "DEV",
+  "dev_item_count": 66,
+  "coverage": {
+    "A0": {
+      "present": 66,
+      "expected": 66,
+      "missing": []
+    },
+    "A1": {
+      "present": 66,
+      "expected": 66,
+      "missing": []
+    },
+    "A2": {
+      "present": 66,
+      "expected": 66,
+      "missing": []
+    },
+    "A3": {
+      "present": 66,
+      "expected": 66,
+      "missing": []
+    }
+  },
+  "results": {
+    "A0": {
+      "split": "DEV",
+      "totalRecords": 66,
+      "scored": 66,
+      "errored": 0,
+      "accuracy": 0.7424242424242424,
+      "macroF1": 0.6042328042328042,
+      "perClass": [
+        {
+          "label": "RESOLVED_COMPLETED",
+          "support": 56,
+          "precision": 0.8979591836734694,
+          "recall": 0.7857142857142857,
+          "f1": 0.838095238095238
+        },
+        {
+          "label": "RESOLVED_NO_NEW_WORK",
+          "support": 10,
+          "precision": 0.29411764705882354,
+          "recall": 0.5,
+          "f1": 0.37037037037037035
+        }
+      ],
+      "confusionMatrix": {
+        "labels": [
+          "RESOLVED_COMPLETED",
+          "RESOLVED_NO_NEW_WORK"
+        ],
+        "matrix": [
+          [
+            44,
+            12
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      }
+    },
+    "A1": {
+      "split": "DEV",
+      "totalRecords": 66,
+      "scored": 40,
+      "errored": 26,
+      "accuracy": 0.8,
+      "macroF1": 0.6875,
+      "perClass": [
+        {
+          "label": "RESOLVED_COMPLETED",
+          "support": 32,
+          "precision": 0.875,
+          "recall": 0.875,
+          "f1": 0.875
+        },
+        {
+          "label": "RESOLVED_NO_NEW_WORK",
+          "support": 8,
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5
+        }
+      ],
+      "confusionMatrix": {
+        "labels": [
+          "RESOLVED_COMPLETED",
+          "RESOLVED_NO_NEW_WORK"
+        ],
+        "matrix": [
+          [
+            28,
+            4
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      }
+    },
+    "A2": {
+      "split": "DEV",
+      "totalRecords": 66,
+      "scored": 0,
+      "errored": 66,
+      "accuracy": 0,
+      "macroF1": 0,
+      "perClass": [
+        {
+          "label": "RESOLVED_COMPLETED",
+          "support": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "RESOLVED_NO_NEW_WORK",
+          "support": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        }
+      ],
+      "confusionMatrix": {
+        "labels": [
+          "RESOLVED_COMPLETED",
+          "RESOLVED_NO_NEW_WORK"
+        ],
+        "matrix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    "A3": {
+      "split": "DEV",
+      "totalRecords": 66,
+      "scored": 0,
+      "errored": 66,
+      "accuracy": 0,
+      "macroF1": 0,
+      "perClass": [
+        {
+          "label": "RESOLVED_COMPLETED",
+          "support": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        {
+          "label": "RESOLVED_NO_NEW_WORK",
+          "support": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        }
+      ],
+      "confusionMatrix": {
+        "labels": [
+          "RESOLVED_COMPLETED",
+          "RESOLVED_NO_NEW_WORK"
+        ],
+        "matrix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      }
+    }
   },
   "deltas": {
-    "A3_minus_A0_macroF1": null,
-    "A3_minus_A1_macroF1": null,
-    "A3_minus_A2_macroF1": null,
-    "A1_minus_A0_macroF1": null
+    "A3-A0": -0.6042328042328042,
+    "A3-A1": -0.6875,
+    "A3-A2": 0,
+    "A1-A0": 0.08326719576719577
   },
-  "operational_counters": {
-    "model_call_count": 0,
-    "historical_search_call_count": 0,
-    "latency_ms": { "mean": null, "median": null, "p95": null },
-    "tokens": { "input": null, "output": null },
-    "errors": 0,
-    "retries": 0
-  },
-  "note_on_placeholder_plumbing": "scripts/eval-dev-bakeoff.ts was executed as a wiring smoke test only (fixed non-model predictor, all 66 DEV items scored=66/errored=0 for all four conditions). Its output is explicitly labeled 'PLACEHOLDER PREDICTOR ... NOT a benchmark result' by the script itself and is not a metric — do not treat any number from that run as a Macro-F1 or accuracy result.",
-  "note_on_prior_hardness_probe": "A separate, non-canonical GATE 01C manual hardness probe (docs/EVAL_CONTRACT.md §12.5, data/gate01c_manifests/dev_cold_baseline_results.json) recorded macro-F1 0.6042 on DEV using a fixed manual heuristic, not this repository's A0/A1/A2/A3 predictors. It is historical context only and is not comparable to, and must not be conflated with, a canonical A0/A1/A2/A3 real-model result."
+  "deltas_note": "Computed from real persisted predictions. See gate classification for whether these deltas reflect a valid causal comparison or a degenerate/partial-outage result."
 }

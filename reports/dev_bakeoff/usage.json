@@ -1,0 +1,73 @@
+{
+  "total_canonical_predictions": 264,
+  "total_model_calls_with_envelope": 106,
+  "total_cost_usd": 1.5228817999999997,
+  "web_search_requests_total": 0,
+  "web_fetch_requests_total": 0,
+  "subagents_spawned_total": 0,
+  "aggregate_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 272087,
+      "outputTokens": 1666,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "costUSD": 0.280417,
+      "calls": 106
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 212,
+      "outputTokens": 2203,
+      "cacheReadInputTokens": 935474,
+      "cacheCreationInputTokens": 258229,
+      "costUSD": 1.2424648000000003,
+      "calls": 106
+    }
+  },
+  "per_condition": {
+    "A0": {
+      "predictions": 66,
+      "succeeded": 66,
+      "errored": 0,
+      "model_calls_with_envelope": 66,
+      "retries": 0,
+      "total_cost_usd": 0.5652474,
+      "latency_ms": {
+        "mean": 48331.15151515151,
+        "median": 43756,
+        "p95": 72403
+      }
+    },
+    "A1": {
+      "predictions": 66,
+      "succeeded": 40,
+      "errored": 26,
+      "model_calls_with_envelope": 40,
+      "retries": 0,
+      "total_cost_usd": 0.9576344000000001,
+      "latency_ms": {
+        "mean": 37892.575,
+        "median": 37669,
+        "p95": 42705
+      }
+    },
+    "A2": {
+      "predictions": 66,
+      "succeeded": 0,
+      "errored": 66,
+      "model_calls_with_envelope": 0,
+      "retries": 0,
+      "total_cost_usd": 0,
+      "latency_ms": null
+    },
+    "A3": {
+      "predictions": 66,
+      "succeeded": 0,
+      "errored": 66,
+      "model_calls_with_envelope": 0,
+      "retries": 0,
+      "total_cost_usd": 0,
+      "latency_ms": null
+    }
+  },
+  "note": "Costs/tokens/latency reflect only calls that returned a parsed CLI JSON envelope. Predictions that failed before an envelope was obtained (CLI exited non-zero) contribute 0 to these aggregates, by construction, not by omission."
+}

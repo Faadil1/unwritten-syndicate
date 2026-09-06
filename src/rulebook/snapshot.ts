@@ -176,7 +176,7 @@ export function readSnapshotFile(
   return { available: true, snapshot: fromDiskSnapshot(disk) };
 }
 
-function describeConditions(conditions: readonly RuleCondition[]): string {
+export function describeConditions(conditions: readonly RuleCondition[]): string {
   return conditions
     .map((c) => `${c.feature} ${c.operator}${c.value !== undefined ? ` ${String(c.value)}` : ""}`)
     .join(" AND ");

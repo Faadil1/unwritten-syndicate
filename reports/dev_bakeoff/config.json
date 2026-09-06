@@ -1,56 +1,70 @@
 {
-  "session": "SESSION E — REAL MODEL DEV BAKEOFF (A0/A1/A2/A3)",
-  "status": "BLOCKED",
+  "session": "SESSION E2 — REAL MODEL DEV BAKEOFF (A0/A1/A2/A3)",
   "gate": "BLOCKED",
-  "blocker_code": "MODEL_CREDENTIAL_REQUIRED",
-  "integration_lineage": {
-    "base": "6790ecd9d294f1b44f3b35d3edebdc4fd7a97671",
-    "cherry_picks_in_order": [
-      "8990a0b",
-      "5fa6eb8",
-      "1838b4a",
-      "1962695"
-    ],
-    "integration_method": "fast-forward merge (worker branch HEAD was already an ancestor of 1962695, and the branch was linear in exactly the required order, so no cherry-pick divergence occurred)"
-  },
+  "blocker_code": "PARTIAL_CLI_ROUTE_FAILURE_MID_RUN",
   "model_route": {
-    "executed": false,
-    "reason": "No authorized real-model route was available in this environment.",
-    "priority_order_checked": [
-      "1. existing repository/provider configuration already available in the VM — none found (no provider config, no client wiring for any LLM API in src/ or scripts/)",
-      "2. ANTHROPIC_API_KEY environment variable — not present in the process environment",
-      "3. another already-authorized provider already present in the repo/environment — none found (no .env, no credentials file, no provider SDK dependency in package.json)"
+    "route": "claude-code-cli",
+    "requested_model": "claude-sonnet-5",
+    "cli_version": "2.1.263 (Claude Code)",
+    "output_format": "json",
+    "isolation_flags": [
+      "--output-format",
+      "json",
+      "--model",
+      "claude-sonnet-5",
+      "--tools",
+      "",
+      "--strict-mcp-config",
+      "--setting-sources",
+      "",
+      "--no-session-persistence",
+      "--disable-slash-commands",
+      "--permission-prompts",
+      "none"
     ],
-    "required_env_var_or_provider": "ANTHROPIC_API_KEY (or an equivalent already-authorized model provider credential wired into this repository/VM)",
-    "provider": null,
-    "model_name_version": null,
-    "temperature_sampling_controls": null,
-    "max_output_tokens": null,
-    "system_prompt_version_hash": null,
-    "parser_output_schema": "RESOLVED_COMPLETED | RESOLVED_NO_NEW_WORK (+ optional confidence/abstain — defined, not exercised)",
-    "concurrency": null,
-    "retry_policy": null,
-    "note": "None of the above were frozen because no model call was ever made. Populating them would be fabrication."
+    "neutral_cwd": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\unwritten-dev-bakeoff-neutral-cwd",
+    "prompt_delivery": "stdin (no positional prompt argv, avoids shell-quoting risk)",
+    "prompt_template_version_hash": "eb428176b882450cf2b54095b4d27d077540b04d4003b443f7633fefd999df13",
+    "output_parser": "exact-match after trim against {RESOLVED_COMPLETED, RESOLVED_NO_NEW_WORK}; one retry on parse failure only, identical prompt/config; never retried due to label content",
+    "concurrency": 4,
+    "isolation": "one fresh process/session per prediction; no --resume/--continue ever used",
+    "retry_policy": "single retry, parse-failure-only (does not cover CLI process-exit failures, which are recorded as errored/unscored, per evaluate()'s existing contract)",
+    "sampling_thinking_flags": "none set (CLI defaults; no --effort flag used)"
   },
-  "frozen_non_model_invariants": {
+  "frozen_invariants": {
     "MAX_ACTIVE_RULES": 15,
+    "real_v3_active_rules_count": 12,
     "DEV_HISTORICAL_SEARCH_TOP_K": 5,
     "dev_item_count": 66,
-    "train_only_historical_corpus_source": "data/train_feedback.jsonl",
-    "real_v3_active_rules_count": 12,
-    "a2_scrambled_rules_count": 12,
-    "a2_scramble_seed": null,
-    "a2_scramble_note": "Deferred: A2's scrambled-rulebook control is instantiated deterministically per DEV item by makeA2Predictor(policySnapshot, \"eval-dev-bakeoff-v1\", decisionFn) in scripts/eval-dev-bakeoff.ts, where \"eval-dev-bakeoff-v1\" is the fixed scramble seed/context id already frozen by Session D's plumbing. No new seed was introduced this session."
+    "a2_scramble_seed": "eval-dev-bakeoff-v1",
+    "a2_scrambled_rulebook_hash": "dfe760b2d055cd04b0a2fa822965eea12554b6ea75d5ff00c75ab9dce77120e7",
+    "v3_rulebook_hash_sha256": "f9bf2abe268d34cd5c8f900500ff5171a663e8e4b53f96061fb1211aa10c86eb",
+    "train_historical_corpus_hash_sha256": "06af38f29d00d703d0c134cfb1f3a82361c7227bc56d09e2bb74a0bbe64683d3"
   },
   "dev_ground_truth": {
-    "materialized_this_session": true,
-    "path": "data/private/dev_ground_truth.jsonl (gitignored, local-only)",
-    "record_count": 66,
-    "sha256": "87ca7ce7dfc7f722d85b67a6a864427815211a5bb04c3c92f12abe7c53524c41",
-    "matches_previously_committed_manifest_hash": true,
-    "materializer": "scripts/materialize-dev-ground-truth.ts (new, DEV-only; never loads or writes FINAL_HOLDOUT ground truth)",
-    "final_holdout_ground_truth_touched": false
+    "expected_count": 66,
+    "expected_sha256": "87ca7ce7dfc7f722d85b67a6a864427815211a5bb04c3c92f12abe7c53524c41"
   },
-  "predictor_facing_input_fields": ["title", "body", "createdAt", "authorAssociation"],
-  "predictor_facing_issue_number_use": "evaluator/provenance bookkeeping only; never included in the model prompt"
+  "run_incident": {
+    "summary": "The full 264-prediction run was interrupted by a systemic Claude Code CLI route failure partway through: every failing prediction exited with code 1 and empty stderr (no diagnostic output was ever produced by the CLI for these calls). Onset was mid-way through A1 (26 of the last predictions in that condition failed); A2 and A3 failed 66/66 (100%). A0 completed 66/66 successfully. Root cause was not independently confirmed from the CLI's own output (stderr was empty for every failure); a claim was made mid-session that account quota was exhausted and later restored on a different account, but that claim could not be verified from any artifact this script has access to.",
+    "discarded_non_canonical_records": [
+      {
+        "status": "BLOCKED",
+        "reason": "MODEL_CREDENTIAL_REQUIRED",
+        "note": "No real-model inference was run this session, so there are no per-item predictions to record. This single record documents that fact rather than a prediction. See DEV_BAKEOFF_REPORT.md and config.json for details."
+      }
+    ]
+  },
+  "integrity": {
+    "web_search_requests_total": 0,
+    "web_fetch_requests_total": 0,
+    "subagents_spawned_total": 0,
+    "memory_hashes_current": {
+      "V0": "d0abc782a01f2cb308ff1c629642507d59116131f25330478297109035498724",
+      "V1": "765b9a0e9f0d587dbc25f787bada5fcaeb06c7ea617f1ca36035bee62492bc94",
+      "V2": "ef5417fa7b626f2a11cb3161854e00f00eb329abe65ca3e1a1cf4abcef9b2b0d",
+      "V3": "f9bf2abe268d34cd5c8f900500ff5171a663e8e4b53f96061fb1211aa10c86eb"
+    }
+  },
+  "no_additional_inference_was_run_in_this_post_processing_pass": true
 }
