@@ -1,0 +1,17 @@
+{
+  "dev_ground_truth.jsonl": {
+    "path": "data/private/dev_ground_truth.jsonl",
+    "records": 66,
+    "sha256": "87ca7ce7dfc7f722d85b67a6a864427815211a5bb04c3c92f12abe7c53524c41"
+  },
+  "final_holdout_ground_truth.jsonl": {
+    "path": "data/private/final_holdout_ground_truth.jsonl",
+    "records": 88,
+    "sha256": "2e28630176d915339bed73f3d696d42728f0e2dcb3e4b88e7678c58226b0294f"
+  },
+  "history_train_dev_for_final.jsonl": {
+    "path": "data/private/history_train_dev_for_final.jsonl",
+    "records": 272,
+    "sha256": "542318fa68cf06ae5e0047a3dd94a71e2c454d3350c2ee1987a9c9e2f2cfe50e"
+  }
+}

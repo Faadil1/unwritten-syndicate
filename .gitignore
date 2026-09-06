@@ -1,3 +1,10 @@
 node_modules/
 dist/
 *.log
+
+# Evaluator-private local artifacts (DEV/FINAL_HOLDOUT ground truth joined
+# with issue text, and the FINAL-eval historical corpus that first joins
+# DEV text to DEV's outcome). Never committed — only integrity hashes/
+# metadata are, in data/private_artifacts_manifest.json. See
+# docs/AO_BUILD_LEDGER.md SESSION A2.
+data/private/

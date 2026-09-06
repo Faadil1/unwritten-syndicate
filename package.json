@@ -9,6 +9,7 @@
   },
   "scripts": {
     "env:check": "tsx scripts/env-check.ts",
+    "data:materialize": "tsx scripts/materialize-dataset.ts",
     "data:verify": "tsx scripts/data-verify.ts",
     "eval:cold": "tsx scripts/eval-cold.ts",
     "eval:dev": "tsx scripts/eval-dev.ts",

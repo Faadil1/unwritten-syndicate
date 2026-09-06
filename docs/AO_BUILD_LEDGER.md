@@ -403,3 +403,204 @@ metadata is invented here beyond what is genuinely exposed to this harness.
 - Branch: `ao/unwritten-syndicate-2/root`
 - SHA: recorded in the handoff response returned after this ledger entry
   was committed (see `git log` on this branch for the authoritative record).
+
+## SESSION A2 — DATA MATERIALIZATION (GATE 02)
+
+Record of the dataset-materialization worker session, continuing from
+SESSION A above on the same base commit lineage (`6790ecd`, the merged
+Data+Eval layer).
+
+### Session identity
+
+- AO session ID: `unwritten-syndicate-2`
+- Git worktree branch: `ao/unwritten-syndicate-2/root`
+- Base commit verified before any change: `6790ecd` (merge of SESSION A),
+  confirmed on top of `origin/main`.
+
+### Access-method deviation (explicit, disclosed)
+
+Prior gates used `gh api graphql` (authenticated `gh` CLI) for all GitHub
+reads. In this worktree, neither the `gh` CLI nor a `GITHUB_TOKEN`/`GH_TOKEN`
+environment variable was present (`gh` not found on PATH in both Git Bash
+and PowerShell; no relevant env vars set). Rather than block on that,
+`scripts/materialize-dataset.ts` uses GitHub's public REST API
+**unauthenticated** — still strictly read-only, no write scope, no
+credentials of any kind. The full `modelcontextprotocol/inspector` issue
+corpus (1058 non-PR issues at fetch time) was retrieved in 23 paginated
+requests (`per_page=100`), comfortably inside the 60 req/hour unauthenticated
+rate limit (17 requests of headroom remained at completion). This is
+disclosed as a deviation from the `gh`-based method documented in prior
+gates' ledger entries, not a silent substitution.
+
+One data-shape difference between the two APIs was caught by the script's
+own integrity checks and fixed before any file was written: GitHub's REST
+API returns `state_reason` lowercased (e.g. `"not_planned"`), while the
+GraphQL API used to build the frozen manifests returns it upper-cased
+(e.g. `"NOT_PLANNED"`). The comparison was made case-insensitive; no
+manifest content was touched.
+
+### What this session verified before writing anything
+
+Per instruction, none of the following were changed, and this was checked,
+not assumed: the frozen benchmark target, split boundaries/IDs, the 60-day
+maturity lag, the duplicate-family exclusions, the four `manifest_*.json`
+SHA-256 hashes, or the `PredictorInput` field contract. `npm run env:check`,
+`npm run data:verify` (pre-existing checks), `npm test` (41/41), and
+`npx tsc --noEmit` all passed against the inherited `6790ecd` state before
+`scripts/materialize-dataset.ts` was written.
+
+`scripts/materialize-dataset.ts` itself never re-derives a split or a label
+— it calls the existing hash-verified `loadGroundTruth()` for TRAIN/DEV/
+FINAL_HOLDOUT and only ever *joins* freshly fetched title/body/
+author_association onto that already-frozen truth, per-record, failing
+closed (no output files written at all) if any of the following don't line
+up for every single manifest issue number: the issue must be found (not
+missing), must not be a pull request, its fetched `created_at` must exactly
+match the frozen manifest's `createdAt`, its `author_association` must be
+in the eligible external set (`NONE`/`FIRST_TIME_CONTRIBUTOR`/
+`CONTRIBUTOR`), and its fetched `state_reason` must match the frozen
+`subtype`. On the actual run, zero violations were found across all 360
+manifest issue numbers (206 TRAIN + 66 DEV + 88 FINAL_HOLDOUT).
+
+### Files created (this session)
+
+- `src/data/redact.ts` — pattern-based scrub (private-key blocks, GitHub/
+  AWS/JWT/Bearer tokens, email addresses, Windows/Unix user-profile paths)
+  applied to all fetched title/body text before it is written to any file,
+  addressing the open item in `COMPLIANCE.md` §5 item 1. Verified: 0
+  suspicious leftovers found in the materialized files after the pass.
+- `scripts/materialize-dataset.ts` — the fetch/join/redact/hash/write
+  pipeline described above; runnable via `npm run data:materialize`. This
+  is the only script in the project that performs a live GitHub call —
+  `eval:cold`/`eval:dev` and all `src/` code paths read exclusively from the
+  materialized local files, so no live GitHub access occurs during any
+  subsequent DEV or FINAL inference.
+- `src/data/materializedHashes.ts` — `verifyMaterializedHashes()` /
+  `verifyPrivateArtifactHashes()`, mirroring `manifests.ts`'s hash-check
+  pattern for the newly materialized artifacts; both report
+  `available: false` rather than failing when files aren't present (e.g. a
+  fresh checkout without the gitignored private artifacts).
+- `tests/data/materialization.test.ts` — 13 new tests: materialized-hash
+  integrity, exact issue-number-set equality against the frozen manifests,
+  the predictor-safe field allowlist (no `label`/`subtype`/`closedAt`/etc.
+  ever present), LF-only line endings, no-fabricated-body-text, TRAIN
+  feedback artifact scope/shape, historical-corpus temporal scope, private
+  artifact hash integrity, `.gitignore` coverage, and `redactText` behavior.
+- Extended `src/data/historicalRecords.ts` with `loadDevEvalHistoricalCorpus()`
+  (reads TRAIN-only `data/train_feedback.jsonl`) and
+  `loadFinalEvalHistoricalCorpus()` (reads the private TRAIN+DEV corpus).
+- Extended `scripts/data-verify.ts` to additionally check the four
+  materialized shared files' hashes, their exact issue-number-set match
+  against the frozen manifests, and (if present locally) the private
+  artifacts' hashes.
+- Added `npm run data:materialize` to `package.json`.
+- Extended `.gitignore` with `data/private/`.
+
+### Data materialized (this session)
+
+**Shared, predictor-safe (committed; label-free by construction, field set
+= `number`/`title`/`body`/`createdAt`/`authorAssociation` only, matching
+`EVAL_CONTRACT.md` §12.6 exactly):**
+
+- `data/train.jsonl` — 206 records
+- `data/dev.jsonl` — 66 records
+- `data/final_holdout.jsonl` — 88 records
+- `data/materialized_hashes.json` — SHA-256 + record count for the above
+  three plus `train_feedback.jsonl`
+
+**TRAIN-only feedback artifact (committed — TRAIN ground truth is not
+subject to the DEV/FINAL privacy constraint, since TRAIN is meant to be
+fully visible for learning):**
+
+- `data/train_feedback.jsonl` — 206 records: predictor-safe fields plus the
+  frozen `label`/`subtype`, `closedAt` (the "permitted post-resolution
+  evidence" a rulebook/Reflector needs — explicitly excluded from
+  `PredictorInput` by `EVAL_CONTRACT.md` §12.6 precisely because it's
+  post-resolution, which is exactly why it belongs in a separate TRAIN-only
+  artifact instead of the shared predictor-safe files), and `sourceUrl`
+  (provenance: `https://github.com/modelcontextprotocol/inspector/issues/{n}`).
+  Comments and linked-PR content were deliberately NOT fetched or included
+  — out of scope for this session, and each carries its own leakage/PII
+  risk per `EVAL_CONTRACT.md` §12.6's reasoning.
+
+**Evaluator-private, local-only artifacts (NOT committed — excluded via
+`.gitignore`; only hashes/record-counts committed, in
+`data/private_artifacts_manifest.json`):**
+
+- `data/private/dev_ground_truth.jsonl` — 66 records (DEV text joined to
+  DEV's `label`/`subtype`/`closedAt` — the first place DEV's answers are
+  joined to its text, hence private)
+- `data/private/final_holdout_ground_truth.jsonl` — 88 records (same, for
+  FINAL_HOLDOUT)
+- `data/private/history_train_dev_for_final.jsonl` — 272 records (TRAIN +
+  DEV, `HistoricalRecord`-shaped) — the historical-search corpus for a
+  FINAL_HOLDOUT evaluation run; private for the same reason (first artifact
+  joining DEV text to DEV's outcome, needed only once DEV-based iteration
+  is frozen and FINAL is evaluated).
+
+### Historical corpus policy applied (freeze)
+
+- **DEV evaluation:** historical search may only draw on TRAIN outcomes
+  (`data/train_feedback.jsonl`, loaded via `loadDevEvalHistoricalCorpus()`).
+  This is structural, not just documented: the loader only ever reads the
+  TRAIN-only file, so a DEV case can never see another DEV case's outcome
+  as history, and DEV outcomes never become history for later DEV cases.
+- **FINAL_HOLDOUT evaluation:** historical search may draw on TRAIN+DEV
+  outcomes (`data/private/history_train_dev_for_final.jsonl`, loaded via
+  `loadFinalEvalHistoricalCorpus()`), since both splits strictly precede
+  FINAL_HOLDOUT under the frozen chronological boundaries
+  (`EVAL_CONTRACT.md` §13).
+- **Note on "the already-frozen FINAL corpus policy":** `EVAL_CONTRACT.md`
+  does not contain a section separately named a "FINAL corpus policy" — the
+  only applicable rule found was the general historical-search temporal
+  constraint in §12.6 ("may only return records with `createdAt` strictly
+  earlier than the issue currently being classified"). The TRAIN+DEV design
+  above is this session's direct application of that general rule to
+  FINAL_HOLDOUT, not a quotation of a distinct named policy. No conflict
+  was found between this application and anything else in
+  `EVAL_CONTRACT.md`, `PROJECT_SPEC.md`, or `IMPLEMENTATION_PLAN.md`, so
+  work proceeded rather than stopping; this is flagged here explicitly so a
+  human reviewer can confirm the inference rather than assume it was a
+  literal quoted requirement.
+
+### Verification performed
+
+- `npm run env:check` — PASSED.
+- `npm run data:verify` — PASSED (extended this session): frozen-manifest
+  hashes OK; no split overlap; no duplicate-family contamination; all four
+  materialized shared-file hashes OK; TRAIN/DEV/FINAL_HOLDOUT materialized
+  issue-number sets each exactly equal their frozen manifest (zero
+  extra/missing); all three private-artifact hashes OK (present in this
+  worktree, since this session generated them here).
+- `npm test` (vitest) — 54/54 passed (41 pre-existing + 13 new).
+- `npx tsc -p tsconfig.json --noEmit` — clean, no errors.
+- `npx tsx scripts/eval-dev.ts` run once, manually, with the pre-existing
+  fixed placeholder predictor (`() => "RESOLVED_COMPLETED"`, unconditional
+  — not a model, not inference) purely to confirm the DEV plumbing now
+  executes end-to-end with `data/dev.jsonl` present (macro-F1 0.4590,
+  accuracy 0.8485 — this is arithmetically the majority-class baseline on
+  DEV's actual 56/10 class split, expected for a constant predictor, and is
+  not a model result of any kind).
+- FINAL_HOLDOUT was not evaluated, scored, or inspected for performance in
+  any way this session — `data/final_holdout.jsonl` was written and
+  hash-verified, and its ground truth join
+  (`data/private/final_holdout_ground_truth.jsonl`) was materialized as an
+  evaluator-private artifact only, never read back for scoring.
+
+### Explicitly not done in this session
+
+- No FINAL_HOLDOUT inference was run.
+- No comments, linked PRs, or later commits were fetched for any issue —
+  only `title`/`body`/`created_at`/`closed_at`/`author_association`/
+  `state_reason` (the last two only for cross-checking against the frozen
+  manifest, never written to a predictor-safe file).
+- No push to the remote GitHub repository was performed; work is committed
+  on the local AO worker branch only.
+- No change to `docs/PROJECT_SPEC.md`, `docs/EVAL_CONTRACT.md`, the four
+  `manifest_*.json` files, or `manifest_hashes.txt`.
+
+### Commit produced by this session
+
+- Branch: `ao/unwritten-syndicate-2/root`
+- SHA: recorded in the handoff response returned after this ledger entry
+  was committed (see `git log` on this branch for the authoritative record).
