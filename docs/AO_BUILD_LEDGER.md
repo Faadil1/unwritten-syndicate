@@ -286,3 +286,120 @@ future gates.
   only, per instruction).
 - Prior commits (`ee2e658...`, `959df60...`) were not amended or rewritten;
   this gate's changes are a new commit.
+
+## SESSION A — DATA + EVAL (post GATE 01C, pre GATE 02)
+
+Record of the Data + Eval implementation worker session. No AO session
+metadata is invented here beyond what is genuinely exposed to this harness.
+
+### Session identity
+
+- AO session ID: `unwritten-syndicate-2` (exposed via `$AO_SESSION_ID` in this harness)
+- Git worktree branch: `ao/unwritten-syndicate-2/root`
+- Base commit verified before any change: `73e4143` ("GATE 01C: freeze final
+  benchmark (resolution-disposition target)") — confirmed present in `git log`
+  before starting.
+
+### What this session found and fixed before building anything
+
+- On first hash-verification attempt, all four frozen manifest files under
+  `data/gate01c_manifests/` failed SHA-256 verification against
+  `manifest_hashes.txt`. Root-caused to `core.autocrlf=true` in this Windows
+  git environment silently rewriting the manifests' original LF line endings
+  to CRLF on checkout — a local checkout artifact, not a change to the frozen
+  data itself (confirmed: `git show HEAD:<path> | sha256sum` on each of the
+  four files matched the frozen record exactly).
+- Fix applied: added `.gitattributes` at the repo root (`data/gate01c_manifests/* -text`
+  plus a general `* text=auto eol=lf`), then re-checked out the four
+  manifest files. All four now hash-match the frozen record exactly. No
+  manifest content was edited.
+
+### Files created (this session)
+
+- `package.json`, `tsconfig.json` — Node/TypeScript project skeleton
+  (`type: module`, strict TS, vitest for tests, tsx for script execution).
+- `src/contracts/types.ts` — shared contracts: `PredictorInput`,
+  `GroundTruth`, `HistoricalRecord`, `Prediction`, `EvaluationResult`,
+  `PolicyRule`, `RulebookSnapshot`, `ToolTrace`, plus supporting types.
+- `src/data/manifests.ts` — frozen-hash table, `verifyManifestHashes`,
+  `assertManifestsIntact`, `loadGroundTruth`, `loadExcludedDuplicateFamilies`.
+- `src/data/guards.ts` — `assertNoSplitOverlap`,
+  `assertDuplicateFamiliesExcluded`, `filterToPastRecords`, `assertAllPast`
+  (historical search / no-future-record contract).
+- `src/data/historicalRecords.ts` — `HistoricalRecordStore`: temporal-only
+  retrieval abstraction consumed by the A1 raw-RAG baseline plumbing.
+- `src/data/predictorInput.ts` — `toPredictorInput` (hard field allowlist:
+  `title`/`body`/`createdAt`/`authorAssociation` only, all other keys
+  dropped) and `loadPredictorInputs` (reads `data/{train,dev,final_holdout}.jsonl`
+  once GATE 02 materializes them; reports `available: false` rather than
+  fabricating data since those files do not exist yet in this gate).
+- `src/eval/groundTruthAccess.ts` — evaluator-only ground-truth access;
+  FINAL_HOLDOUT requires an explicit `EvaluatorAccessToken` obtained via a
+  fixed acknowledgment string, so FINAL_HOLDOUT truth cannot be fetched by
+  accident from a predictor or rule-learning code path.
+- `src/eval/metrics.ts` — confusion matrix, per-class precision/recall/F1,
+  macro-F1, accuracy, completion/error accounting (`evaluate`), plus
+  `majorityBaselinePredictions`.
+- `src/eval/permutation.ts` — `deterministicShuffle` (seeded, SHA-256 +
+  mulberry32) and `scrambleRulebook` for A2.
+- `src/eval/harness.ts` — `runPredictor`/`runA0Cold` (isolated, per-item
+  try/catch, frozen input objects), `makeA1Predictor` (raw-RAG plumbing over
+  `HistoricalRecordStore`), `makeA2Predictor` (scrambled-rulebook plumbing).
+- `scripts/env-check.ts`, `scripts/data-verify.ts`, `scripts/eval-cold.ts`,
+  `scripts/eval-dev.ts` — the four required npm commands.
+- `tests/data/manifests.test.ts`, `tests/data/guards.test.ts`,
+  `tests/data/predictorInputBoundary.test.ts`,
+  `tests/eval/groundTruthAccess.test.ts`, `tests/eval/metrics.test.ts`,
+  `tests/eval/permutation.test.ts`, `tests/eval/harness.test.ts` — 41 tests,
+  all passing.
+- `.gitattributes` — line-ending fix described above.
+
+### Verification performed
+
+- `npm run env:check` — PASSED (4/4 manifest hashes match frozen record).
+- `npm run data:verify` — PASSED (206/66/88 records; no split overlap; no
+  duplicate-family contamination).
+- `npm run eval:cold` — PASSED: re-scored the frozen
+  `dev_cold_baseline_results.json` predictions through this session's own
+  `evaluate()` implementation; reproduced macro-F1 0.6042 / accuracy 0.7424
+  exactly, matching EVAL_CONTRACT.md §12.5. No new model inference was run;
+  this only proves the metrics engine is self-consistent with the frozen
+  record. DEV only — FINAL_HOLDOUT was not touched.
+- `npm run eval:dev` — reports that `data/dev.jsonl` (title/body
+  materialization) does not exist yet (GATE 02's deliverable, per
+  `docs/IMPLEMENTATION_PLAN.md`); prints that plumbing is wired and ready
+  and exits without fabricating a result.
+- `npm test` (vitest) — 41/41 tests passed, including: manifest hash
+  equality, TRAIN/DEV/FINAL_HOLDOUT disjointness (plus an injected-overlap
+  negative test), duplicate-family exclusion (plus injected-violation
+  negative test), the full `PredictorInput` field-allowlist boundary
+  (dropping `label`/`subtype`/`stateReason`/`closedAt`/`labels`/`milestone`/
+  `assignee`/`comments`), FINAL_HOLDOUT evaluator-only gating, historical
+  search temporal contract (no future records, via both a direct filter
+  test and `HistoricalRecordStore`), confusion-matrix/macro-F1 arithmetic
+  against hand-computed expected values, and deterministic-shuffle/A2
+  rulebook-permutation reproducibility.
+- `npx tsc -p tsconfig.json --noEmit` — clean, no errors.
+
+### Explicitly not done in this session (by design, per task scope)
+
+- No `src/learning/**`, `src/rulebook/**`, `src/tools/**`,
+  `src/instrumentation/**`, or demo UI code was written.
+- No dataset materialization (`data/train.jsonl` / `data/dev.jsonl` /
+  `data/final_holdout.jsonl`) was performed — that is GATE 02's scope per
+  `docs/IMPLEMENTATION_PLAN.md`; this session only built the loader
+  plumbing that will consume those files once they exist.
+- No model inference was run anywhere in this session (A0/A1/A2 harness
+  plumbing was built and unit-tested with fake predictors only).
+- FINAL_HOLDOUT ground truth was loaded exactly once, inside a test, purely
+  to confirm its record count (88) via the evaluator-access-token path — its
+  labels were never scored against any prediction and no performance number
+  involving FINAL_HOLDOUT was computed or inspected.
+- No push to the remote GitHub repository was performed; work is committed
+  on the local AO worker branch only.
+
+### Commit produced by this session
+
+- Branch: `ao/unwritten-syndicate-2/root`
+- SHA: recorded in the handoff response returned after this ledger entry
+  was committed (see `git log` on this branch for the authoritative record).
