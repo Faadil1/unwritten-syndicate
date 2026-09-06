@@ -1,0 +1,14 @@
+{
+  "version": "V0",
+  "round": 0,
+  "rules": [],
+  "provenance": {},
+  "metrics": {
+    "examples_seen": 0,
+    "candidate_rules": 0,
+    "active_rules": 0,
+    "retired_rules": 0,
+    "contradictions": 0,
+    "compression_ratio": 0
+  }
+}

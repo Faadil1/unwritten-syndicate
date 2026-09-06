@@ -1,0 +1,170 @@
+{
+  "version": "V2",
+  "round": 2,
+  "rules": [
+    {
+      "id": "rule-1",
+      "type": "authorship_signal",
+      "conditions": [
+        {
+          "feature": "authorAssociation",
+          "operator": "equals",
+          "value": "CONTRIBUTOR"
+        }
+      ],
+      "recommended_behavior": "RESOLVED_NO_NEW_WORK",
+      "confidence": 0.7,
+      "support_count": 8,
+      "success_count": 6,
+      "failure_count": 2,
+      "contradiction_count": 0,
+      "created_round": 1,
+      "updated_round": 2,
+      "status": "active"
+    },
+    {
+      "id": "rule-2",
+      "type": "authorship_signal",
+      "conditions": [
+        {
+          "feature": "authorAssociation",
+          "operator": "equals",
+          "value": "NONE"
+        }
+      ],
+      "recommended_behavior": "RESOLVED_COMPLETED",
+      "confidence": 0.9,
+      "support_count": 8,
+      "success_count": 8,
+      "failure_count": 0,
+      "contradiction_count": 0,
+      "created_round": 1,
+      "updated_round": 2,
+      "status": "active"
+    },
+    {
+      "id": "rule-3",
+      "type": "content_shape_signal",
+      "conditions": [
+        {
+          "feature": "bodyLengthBucket",
+          "operator": "equals",
+          "value": "short"
+        }
+      ],
+      "recommended_behavior": "RESOLVED_NO_NEW_WORK",
+      "confidence": 0.7,
+      "support_count": 8,
+      "success_count": 6,
+      "failure_count": 2,
+      "contradiction_count": 0,
+      "created_round": 1,
+      "updated_round": 2,
+      "status": "active"
+    },
+    {
+      "id": "rule-4",
+      "type": "content_shape_signal",
+      "conditions": [
+        {
+          "feature": "bodyLengthBucket",
+          "operator": "equals",
+          "value": "long"
+        }
+      ],
+      "recommended_behavior": "RESOLVED_COMPLETED",
+      "confidence": 0.9,
+      "support_count": 8,
+      "success_count": 8,
+      "failure_count": 0,
+      "contradiction_count": 0,
+      "created_round": 1,
+      "updated_round": 2,
+      "status": "active"
+    },
+    {
+      "id": "rule-5",
+      "type": "content_shape_signal",
+      "conditions": [
+        {
+          "feature": "hasQuestionMark",
+          "operator": "truthy"
+        }
+      ],
+      "recommended_behavior": "RESOLVED_NO_NEW_WORK",
+      "confidence": 0.7,
+      "support_count": 8,
+      "success_count": 6,
+      "failure_count": 2,
+      "contradiction_count": 0,
+      "created_round": 1,
+      "updated_round": 2,
+      "status": "active"
+    },
+    {
+      "id": "rule-6",
+      "type": "content_shape_signal",
+      "conditions": [
+        {
+          "feature": "hasQuestionMark",
+          "operator": "falsy"
+        }
+      ],
+      "recommended_behavior": "RESOLVED_COMPLETED",
+      "confidence": 0.7222222222222222,
+      "support_count": 16,
+      "success_count": 12,
+      "failure_count": 4,
+      "contradiction_count": 0,
+      "created_round": 1,
+      "updated_round": 2,
+      "status": "active"
+    }
+  ],
+  "provenance": {
+    "rule-1": {
+      "created_from_round": 1,
+      "evidence_example_count": 8,
+      "source_rule_ids": [],
+      "note": "Generalized from 4 TRAIN examples sharing authorAssociation=CONTRIBUTOR (purity 0.75)."
+    },
+    "rule-2": {
+      "created_from_round": 1,
+      "evidence_example_count": 4,
+      "source_rule_ids": [],
+      "note": "Generalized from 4 TRAIN examples sharing authorAssociation=NONE (purity 1.00)."
+    },
+    "rule-3": {
+      "created_from_round": 1,
+      "evidence_example_count": 8,
+      "source_rule_ids": [],
+      "note": "Generalized from 4 TRAIN examples sharing bodyLengthBucket=short (purity 0.75)."
+    },
+    "rule-4": {
+      "created_from_round": 1,
+      "evidence_example_count": 4,
+      "source_rule_ids": [],
+      "note": "Generalized from 4 TRAIN examples sharing bodyLengthBucket=long (purity 1.00)."
+    },
+    "rule-5": {
+      "created_from_round": 1,
+      "evidence_example_count": 8,
+      "source_rule_ids": [],
+      "note": "Generalized from 4 TRAIN examples sharing hasQuestionMark=true (purity 0.75)."
+    },
+    "rule-6": {
+      "created_from_round": 1,
+      "evidence_example_count": 8,
+      "source_rule_ids": [],
+      "note": "Generalized from 8 TRAIN examples sharing hasQuestionMark=false (purity 0.75)."
+    }
+  },
+  "metrics": {
+    "examples_seen": 24,
+    "candidate_rules": 0,
+    "active_rules": 6,
+    "retired_rules": 0,
+    "contradictions": 0,
+    "compression_ratio": 4
+  }
+}
