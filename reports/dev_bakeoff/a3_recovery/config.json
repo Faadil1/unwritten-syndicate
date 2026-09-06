@@ -1,0 +1,100 @@
+{
+  "session": "SESSION E3R — A3-FIRST RECOVERY DEV EVALUATION",
+  "condition": "A3",
+  "gate": "A3_RECOVERY_WEAK",
+  "note": "A3-only deadline-recovery run. A0/A1 NOT rerun. FINAL_HOLDOUT untouched. SESSION E2 artifacts under reports/dev_bakeoff/ left intact.",
+  "model_route": {
+    "route": "claude-code-cli (`claude -p`)",
+    "requested_model": "claude-sonnet-5",
+    "cli_version": "2.1.263 (Claude Code)",
+    "output_format": "json",
+    "isolation_flags": [
+      "--output-format",
+      "json",
+      "--model",
+      "claude-sonnet-5",
+      "--tools",
+      "",
+      "--strict-mcp-config",
+      "--setting-sources",
+      "",
+      "--no-session-persistence",
+      "--disable-slash-commands",
+      "--permission-prompts",
+      "none"
+    ],
+    "neutral_cwd": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2\\unwritten-dev-bakeoff-neutral-cwd",
+    "prompt_delivery": "stdin (no positional prompt argv)",
+    "prompt_template_version_hash": "eb428176b882450cf2b54095b4d27d077540b04d4003b443f7633fefd999df13",
+    "output_parser": "exact-match after trim against {RESOLVED_COMPLETED, RESOLVED_NO_NEW_WORK}; one retry on parser failure only; one retry on transport failure only; never retried due to label content",
+    "concurrency": 4,
+    "isolation": "one fresh process/session per prediction; no --resume/--continue ever used",
+    "retry_policy": "single retry per prediction on transport OR parser failure"
+  },
+  "frozen_invariants": {
+    "MAX_ACTIVE_RULES": 15,
+    "real_v3_active_rules_count": 12,
+    "DEV_HISTORICAL_SEARCH_TOP_K": 5,
+    "dev_item_count": 66,
+    "prompt_template_hash_sha256": "eb428176b882450cf2b54095b4d27d077540b04d4003b443f7633fefd999df13",
+    "v3_rulebook_hash_sha256": "f9bf2abe268d34cd5c8f900500ff5171a663e8e4b53f96061fb1211aa10c86eb",
+    "train_historical_corpus_hash_sha256": "06af38f29d00d703d0c134cfb1f3a82361c7227bc56d09e2bb74a0bbe64683d3",
+    "retrieval_top_k": 5,
+    "rulebook_backed_tool_heuristic_hooks": true
+  },
+  "dev_ground_truth": {
+    "expected_count": 66,
+    "expected_private_artifact_sha256": "87ca7ce7dfc7f722d85b67a6a864427815211a5bb04c3c92f12abe7c53524c41",
+    "scoring_source": "data/gate01c_manifests/manifest_dev.json (frozen, hash-verified by assertManifestsIntact)"
+  },
+  "preflight": {
+    "status": "PASSED",
+    "transport_check": {
+      "ok": true,
+      "detail": "PONG"
+    },
+    "a3_smoke": {
+      "ok": true,
+      "detail": "RESOLVED_COMPLETED",
+      "latencyMs": 3820,
+      "costUsd": 0.0088732,
+      "web": 0,
+      "sub": 0
+    },
+    "memory_hashes_unchanged": true,
+    "memory_hashes_before": {
+      "V0": "d0abc782a01f2cb308ff1c629642507d59116131f25330478297109035498724",
+      "V1": "765b9a0e9f0d587dbc25f787bada5fcaeb06c7ea617f1ca36035bee62492bc94",
+      "V2": "ef5417fa7b626f2a11cb3161854e00f00eb329abe65ca3e1a1cf4abcef9b2b0d",
+      "V3": "f9bf2abe268d34cd5c8f900500ff5171a663e8e4b53f96061fb1211aa10c86eb"
+    },
+    "memory_hashes_after_preflight": {
+      "V0": "d0abc782a01f2cb308ff1c629642507d59116131f25330478297109035498724",
+      "V1": "765b9a0e9f0d587dbc25f787bada5fcaeb06c7ea617f1ca36035bee62492bc94",
+      "V2": "ef5417fa7b626f2a11cb3161854e00f00eb329abe65ca3e1a1cf4abcef9b2b0d",
+      "V3": "f9bf2abe268d34cd5c8f900500ff5171a663e8e4b53f96061fb1211aa10c86eb"
+    }
+  },
+  "circuit_breaker": {
+    "tripped": false,
+    "threshold_consecutive": 3
+  },
+  "integrity": {
+    "web_search_requests_total": 0,
+    "web_fetch_requests_total": 0,
+    "subagents_spawned_total": 0,
+    "memory_hashes_unchanged": true,
+    "memory_hashes_before": {
+      "V0": "d0abc782a01f2cb308ff1c629642507d59116131f25330478297109035498724",
+      "V1": "765b9a0e9f0d587dbc25f787bada5fcaeb06c7ea617f1ca36035bee62492bc94",
+      "V2": "ef5417fa7b626f2a11cb3161854e00f00eb329abe65ca3e1a1cf4abcef9b2b0d",
+      "V3": "f9bf2abe268d34cd5c8f900500ff5171a663e8e4b53f96061fb1211aa10c86eb"
+    },
+    "memory_hashes_after": {
+      "V0": "d0abc782a01f2cb308ff1c629642507d59116131f25330478297109035498724",
+      "V1": "765b9a0e9f0d587dbc25f787bada5fcaeb06c7ea617f1ca36035bee62492bc94",
+      "V2": "ef5417fa7b626f2a11cb3161854e00f00eb329abe65ca3e1a1cf4abcef9b2b0d",
+      "V3": "f9bf2abe268d34cd5c8f900500ff5171a663e8e4b53f96061fb1211aa10c86eb"
+    }
+  }
+}

@@ -16,6 +16,7 @@
     "eval:dev": "tsx scripts/eval-dev.ts",
     "eval:dev:bakeoff": "tsx scripts/eval-dev-bakeoff.ts",
     "eval:dev:bakeoff:real": "tsx scripts/run-real-dev-bakeoff.ts",
+    "eval:dev:a3-recovery": "tsx scripts/run-a3-recovery.ts",
     "eval:dev:bakeoff:report": "tsx scripts/report-dev-bakeoff.ts",
     "learn:fixtures": "tsx scripts/learn-fixtures.ts",
     "learn:train": "tsx scripts/learn-train.ts",

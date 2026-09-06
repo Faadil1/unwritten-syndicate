@@ -604,3 +604,78 @@ fully visible for learning):**
 - Branch: `ao/unwritten-syndicate-2/root`
 - SHA: recorded in the handoff response returned after this ledger entry
   was committed (see `git log` on this branch for the authoritative record).
+
+## SESSION E3R — A3-FIRST RECOVERY DEV EVALUATION
+
+Deadline-recovery run: **A3 only**, all 66 DEV items, on the frozen SESSION
+E2 configuration. SESSION E2's full A0/A1/A2/A3 run was interrupted by a
+systemic Claude Code CLI-route outage (A0 66/66, A1 40/66, A2 0/66, A3
+0/66). A0/A1 were **not** rerun this session; SESSION E2 artifacts under
+`reports/dev_bakeoff/` are left byte-for-byte intact. This run writes only
+under `reports/dev_bakeoff/a3_recovery/`.
+
+### Lineage verified before edits
+
+`6790ecd9` → `8990a0b` → `5fa6eb8` → `1838b4a` → `1962695` → `7715f92` →
+`3039f95d` (SESSION E2 tip). Recovery branch cut from `3039f95d`. Repo
+confirmed `Faadil1/unwritten-syndicate`; working tree clean.
+
+### Frozen config carried forward (verified by hash, not re-derived)
+
+- route: Claude Code CLI `claude -p`, requested model `claude-sonnet-5`,
+  CLI v2.1.263, `--output-format json`, E2 isolation flags verbatim
+- prompt template hash `eb428176…df13`
+- V3 Rulebook hash `f9bf2abe…c86eb` (12 active rules, `MAX_ACTIVE_RULES=15`)
+- TRAIN corpus hash `06af38f2…83d3`, retrieval top-k = 5
+- Rulebook-backed `ToolHeuristicHooks`; one fresh CLI process per
+  prediction (no `--resume`/`--continue`); concurrency 4
+- retry policy: one retry per prediction on transport OR parser failure only
+
+### Preflight (all passed, no retry needed)
+
+1. `claude -p` transport check → `PONG`
+2. one A3 DEV smoke prediction → valid label
+3. zero web_search / web_fetch / subagents
+4. `memory/V0–V3.json` hashes unchanged
+
+### A3 full run result — gate `A3_RECOVERY_WEAK`
+
+- 66/66 A3 predictions valid, 0 errored, 0 retries, 0 parse failures
+- macro-F1 **0.5307**, accuracy **0.8333**
+- per-class F1: RESOLVED_COMPLETED 0.9076 (P 0.857 / R 0.964),
+  RESOLVED_NO_NEW_WORK 0.1538 (P 0.333 / R 0.100)
+- confusion matrix [[54, 2], [9, 1]] — A3 predicted the majority label on
+  63/66 items
+- historical-search calls: **0** — the frozen Rulebook heuristic gated out
+  every search, so A3 prompts carried the active rules but no retrieved
+  history. This is the frozen-config behavior, not a defect, and is flagged
+  here for review.
+- cost $0.7111 total; latency mean/median/p95 = 11650 / 11620 / 14290 ms;
+  wall clock 197s at concurrency 4
+
+### Cross-session recovery comparison (NOT a single-route causal estimate)
+
+A3 (this session) vs SESSION E2 A0 canonical complete (66/66):
+macro-F1 **−0.0735** (0.5307 − 0.6042), accuracy **+0.0909**. The
+incomplete SESSION E2 A1 (40/66) is not used for any canonical delta.
+
+### Integrity / locks
+
+- FINAL_HOLDOUT never read, scored, materialized, inferred, or fetched;
+  `data/private/` does not exist in this checkout.
+- No Rulebook/memory writes; `memory/V0–V3.json` hashes identical to E2.
+- No network retrieval during prediction; issue numbers never entered a
+  prompt (bookkeeping only).
+- `npm test` 150 passed / 1 skipped; `npm run typecheck` clean;
+  `npm run data:verify` PASSED (frozen manifest hashes OK).
+
+### Artifacts (committed; label-free of DEV ground truth)
+
+- `scripts/run-a3-recovery.ts`, `package.json` (`eval:dev:a3-recovery`)
+- `reports/dev_bakeoff/a3_recovery/{predictions.jsonl,config.json,metrics.json,usage.json,A3_RECOVERY_REPORT.md}`
+  (`run.log` also written there but `.gitignore`d via `*.log`, so local-only)
+
+### Commit produced by this session
+
+- Branch: `ao/unwritten-syndicate-8/a3-recovery`
+- SHA: recorded in the handoff response (see `git log` for the record).

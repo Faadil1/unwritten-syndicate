@@ -1,0 +1,59 @@
+{
+  "split": "DEV",
+  "condition": "A3",
+  "dev_item_count": 66,
+  "complete_predictions": 66,
+  "errored_predictions": 0,
+  "all_66_valid": true,
+  "result": {
+    "split": "DEV",
+    "totalRecords": 66,
+    "scored": 66,
+    "errored": 0,
+    "accuracy": 0.8333333333333334,
+    "macroF1": 0.5307045895281188,
+    "perClass": [
+      {
+        "label": "RESOLVED_COMPLETED",
+        "support": 56,
+        "precision": 0.8571428571428571,
+        "recall": 0.9642857142857143,
+        "f1": 0.9075630252100839
+      },
+      {
+        "label": "RESOLVED_NO_NEW_WORK",
+        "support": 10,
+        "precision": 0.3333333333333333,
+        "recall": 0.1,
+        "f1": 0.15384615384615383
+      }
+    ],
+    "confusionMatrix": {
+      "labels": [
+        "RESOLVED_COMPLETED",
+        "RESOLVED_NO_NEW_WORK"
+      ],
+      "matrix": [
+        [
+          54,
+          2
+        ],
+        [
+          9,
+          1
+        ]
+      ]
+    }
+  },
+  "cross_session_recovery_delta": {
+    "basis": "cross-session recovery comparison (A3 this session vs SESSION E2 A0 canonical complete 66/66) — NOT a single-route causal estimate",
+    "a3_macro_f1": 0.5307045895281188,
+    "e2_a0_macro_f1": 0.6042328042328042,
+    "A3-A0_macro_f1": -0.0735282147046854,
+    "a3_accuracy": 0.8333333333333334,
+    "e2_a0_accuracy": 0.7424242424242424,
+    "A3-A0_accuracy": 0.09090909090909094,
+    "not_used": "SESSION E2 A1 40/66 is incomplete and is NOT used for any canonical delta"
+  },
+  "gate": "A3_RECOVERY_WEAK"
+}
