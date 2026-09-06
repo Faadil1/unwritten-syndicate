@@ -1,0 +1,1 @@
+{"status": "BLOCKED", "reason": "MODEL_CREDENTIAL_REQUIRED", "note": "No real-model inference was run this session, so there are no per-item predictions to record. This single record documents that fact rather than a prediction. See DEV_BAKEOFF_REPORT.md and config.json for details."}

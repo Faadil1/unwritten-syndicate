@@ -134,8 +134,12 @@ describe("historical corpus loaders (temporal search contract)", () => {
 describe("evaluator-private artifacts (data/private/, gitignored)", () => {
   const priv = verifyPrivateArtifactHashes();
 
-  it.skipIf(!priv.available)("hashes match the recorded private-artifacts manifest", () => {
+  it.skipIf(!priv.available)("present private artifacts match the recorded manifest hash", () => {
+    // Files legitimately absent (e.g. a DEV-only materialization run that
+    // never touches FINAL_HOLDOUT) are not failures — only a file that
+    // exists on disk with the wrong hash is.
     for (const r of priv.results) {
+      if (!r.presentOnDisk) continue;
       expect(r.actual, `${r.file} hash mismatch`).toBe(r.expected);
     }
   });

@@ -26,6 +26,8 @@ export interface HashCheckResult {
   readonly expected: string;
   readonly actual: string;
   readonly ok: boolean;
+  /** False when this specific file is legitimately absent (not yet materialized in this checkout). */
+  readonly presentOnDisk: boolean;
 }
 
 /**
@@ -46,8 +48,9 @@ export function verifyMaterializedHashes(): { available: boolean; results: HashC
   >;
   const results = Object.entries(recorded).map(([file, entry]) => {
     const abs = path.join(DATA_DIR, file);
-    const actual = existsSync(abs) ? sha256File(abs) : "<file missing>";
-    return { file, expected: entry.sha256, actual, ok: actual === entry.sha256 };
+    const presentOnDisk = existsSync(abs);
+    const actual = presentOnDisk ? sha256File(abs) : "<file missing>";
+    return { file, expected: entry.sha256, actual, ok: actual === entry.sha256, presentOnDisk };
   });
   return { available: true, results };
 }
@@ -55,15 +58,24 @@ export function verifyMaterializedHashes(): { available: boolean; results: HashC
 /**
  * Verifies the evaluator-private, gitignored artifacts under data/private/
  * against data/private_artifacts_manifest.json. These files are generated
- * locally by `npm run data:materialize` and are NOT committed, so a fresh
+ * locally by `npm run data:materialize` (or, for DEV only, by
+ * `npm run data:materialize:dev-only`) and are NOT committed, so a fresh
  * checkout of this branch will legitimately not have them — callers must
  * treat `available: false` as expected, not as failure.
+ *
+ * Individual entries may also be legitimately absent on disk even when
+ * `available` is true: a DEV-only materialization run (SESSION E — DEV
+ * bakeoff, which must never touch FINAL_HOLDOUT ground truth) produces
+ * `dev_ground_truth.jsonl` without `final_holdout_ground_truth.jsonl` or
+ * `history_train_dev_for_final.jsonl`. A missing file is `ok: true`
+ * (nothing to check yet); only a file that exists on disk with the wrong
+ * hash is `ok: false`.
  */
 export function verifyPrivateArtifactHashes(): { available: boolean; results: HashCheckResult[] } {
   // The manifest itself IS committed (it's an audit record), but the private
-  // files it describes are gitignored and only exist locally once
-  // `npm run data:materialize` has been run on this machine — so gate
-  // availability on the private directory too, not just the manifest.
+  // files it describes are gitignored and only exist locally once a
+  // materializer has been run on this machine — so gate availability on the
+  // private directory too, not just the manifest.
   if (!existsSync(PRIVATE_ARTIFACTS_MANIFEST_FILE) || !existsSync(PRIVATE_DIR)) {
     return { available: false, results: [] };
   }
@@ -73,8 +85,9 @@ export function verifyPrivateArtifactHashes(): { available: boolean; results: Ha
   >;
   const results = Object.entries(recorded).map(([file, entry]) => {
     const abs = path.resolve(DATA_DIR, "..", entry.path);
-    const actual = existsSync(abs) ? sha256File(abs) : "<file missing>";
-    return { file, expected: entry.sha256, actual, ok: actual === entry.sha256 };
+    const presentOnDisk = existsSync(abs);
+    const actual = presentOnDisk ? sha256File(abs) : "<file missing>";
+    return { file, expected: entry.sha256, actual, ok: !presentOnDisk || actual === entry.sha256, presentOnDisk };
   });
   return { available: true, results };
 }

@@ -65,7 +65,8 @@ if (!privateCheck.available) {
   console.log("  not present in this checkout (expected unless you ran `npm run data:materialize` locally) — skipping.");
 } else {
   for (const r of privateCheck.results) {
-    console.log(`  hash ${r.ok ? "OK  " : "FAIL"} ${r.file}`);
+    const status = !r.presentOnDisk ? "SKIP" : r.ok ? "OK  " : "FAIL";
+    console.log(`  hash ${status} ${r.file}${!r.presentOnDisk ? " (not materialized in this checkout)" : ""}`);
   }
   if (!privateCheck.results.every((r) => r.ok)) {
     console.error("FAILED: private artifact hash mismatch.");

@@ -1,0 +1,56 @@
+{
+  "session": "SESSION E — REAL MODEL DEV BAKEOFF (A0/A1/A2/A3)",
+  "status": "BLOCKED",
+  "gate": "BLOCKED",
+  "blocker_code": "MODEL_CREDENTIAL_REQUIRED",
+  "integration_lineage": {
+    "base": "6790ecd9d294f1b44f3b35d3edebdc4fd7a97671",
+    "cherry_picks_in_order": [
+      "8990a0b",
+      "5fa6eb8",
+      "1838b4a",
+      "1962695"
+    ],
+    "integration_method": "fast-forward merge (worker branch HEAD was already an ancestor of 1962695, and the branch was linear in exactly the required order, so no cherry-pick divergence occurred)"
+  },
+  "model_route": {
+    "executed": false,
+    "reason": "No authorized real-model route was available in this environment.",
+    "priority_order_checked": [
+      "1. existing repository/provider configuration already available in the VM — none found (no provider config, no client wiring for any LLM API in src/ or scripts/)",
+      "2. ANTHROPIC_API_KEY environment variable — not present in the process environment",
+      "3. another already-authorized provider already present in the repo/environment — none found (no .env, no credentials file, no provider SDK dependency in package.json)"
+    ],
+    "required_env_var_or_provider": "ANTHROPIC_API_KEY (or an equivalent already-authorized model provider credential wired into this repository/VM)",
+    "provider": null,
+    "model_name_version": null,
+    "temperature_sampling_controls": null,
+    "max_output_tokens": null,
+    "system_prompt_version_hash": null,
+    "parser_output_schema": "RESOLVED_COMPLETED | RESOLVED_NO_NEW_WORK (+ optional confidence/abstain — defined, not exercised)",
+    "concurrency": null,
+    "retry_policy": null,
+    "note": "None of the above were frozen because no model call was ever made. Populating them would be fabrication."
+  },
+  "frozen_non_model_invariants": {
+    "MAX_ACTIVE_RULES": 15,
+    "DEV_HISTORICAL_SEARCH_TOP_K": 5,
+    "dev_item_count": 66,
+    "train_only_historical_corpus_source": "data/train_feedback.jsonl",
+    "real_v3_active_rules_count": 12,
+    "a2_scrambled_rules_count": 12,
+    "a2_scramble_seed": null,
+    "a2_scramble_note": "Deferred: A2's scrambled-rulebook control is instantiated deterministically per DEV item by makeA2Predictor(policySnapshot, \"eval-dev-bakeoff-v1\", decisionFn) in scripts/eval-dev-bakeoff.ts, where \"eval-dev-bakeoff-v1\" is the fixed scramble seed/context id already frozen by Session D's plumbing. No new seed was introduced this session."
+  },
+  "dev_ground_truth": {
+    "materialized_this_session": true,
+    "path": "data/private/dev_ground_truth.jsonl (gitignored, local-only)",
+    "record_count": 66,
+    "sha256": "87ca7ce7dfc7f722d85b67a6a864427815211a5bb04c3c92f12abe7c53524c41",
+    "matches_previously_committed_manifest_hash": true,
+    "materializer": "scripts/materialize-dev-ground-truth.ts (new, DEV-only; never loads or writes FINAL_HOLDOUT ground truth)",
+    "final_holdout_ground_truth_touched": false
+  },
+  "predictor_facing_input_fields": ["title", "body", "createdAt", "authorAssociation"],
+  "predictor_facing_issue_number_use": "evaluator/provenance bookkeeping only; never included in the model prompt"
+}

@@ -24,13 +24,13 @@ import type { AuthorAssociation, GroundTruth, ResolutionDisposition, ResolutionS
  */
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const DATA_DIR = path.resolve(HERE, "..", "data");
-const PRIVATE_DIR = path.join(DATA_DIR, "private");
-const REPO_OWNER = "modelcontextprotocol";
-const REPO_NAME = "inspector";
-const SOURCE_URL_BASE = `https://github.com/${REPO_OWNER}/${REPO_NAME}/issues`;
+export const DATA_DIR = path.resolve(HERE, "..", "data");
+export const PRIVATE_DIR = path.join(DATA_DIR, "private");
+export const REPO_OWNER = "modelcontextprotocol";
+export const REPO_NAME = "inspector";
+export const SOURCE_URL_BASE = `https://github.com/${REPO_OWNER}/${REPO_NAME}/issues`;
 
-interface RawGitHubIssue {
+export interface RawGitHubIssue {
   number: number;
   title: string | null;
   body: string | null;
@@ -43,11 +43,11 @@ interface RawGitHubIssue {
 
 const EXTERNAL_ASSOCIATIONS: readonly AuthorAssociation[] = ["NONE", "FIRST_TIME_CONTRIBUTOR", "CONTRIBUTOR"];
 
-function subtypeToLabel(subtype: ResolutionSubtype): ResolutionDisposition {
+export function subtypeToLabel(subtype: ResolutionSubtype): ResolutionDisposition {
   return subtype === "COMPLETED" ? "RESOLVED_COMPLETED" : "RESOLVED_NO_NEW_WORK";
 }
 
-function stateReasonToSubtype(stateReason: string | null): ResolutionSubtype | null {
+export function stateReasonToSubtype(stateReason: string | null): ResolutionSubtype | null {
   // GitHub's REST API returns state_reason in lowercase (e.g. "not_planned");
   // the GraphQL API used to build the frozen manifests returns it upper-cased
   // (e.g. "NOT_PLANNED"). Same field, different casing convention per API.
@@ -67,7 +67,7 @@ function parseNextLink(linkHeader: string | null): string | null {
   return null;
 }
 
-async function fetchAllIssues(): Promise<Map<number, RawGitHubIssue>> {
+export async function fetchAllIssues(): Promise<Map<number, RawGitHubIssue>> {
   const byNumber = new Map<number, RawGitHubIssue>();
   let url: string | null =
     `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues` +
@@ -96,7 +96,7 @@ async function fetchAllIssues(): Promise<Map<number, RawGitHubIssue>> {
   return byNumber;
 }
 
-interface JoinedRecord {
+export interface JoinedRecord {
   readonly number: number;
   readonly title: string;
   readonly body: string;
@@ -108,7 +108,7 @@ interface JoinedRecord {
   readonly sourceUrl: string;
 }
 
-function joinSplit(
+export function joinSplit(
   splitName: string,
   groundTruth: readonly GroundTruth[],
   fetched: Map<number, RawGitHubIssue>,
@@ -177,12 +177,12 @@ function joinSplit(
   return out;
 }
 
-function writeJsonl(absPath: string, rows: readonly unknown[]): void {
+export function writeJsonl(absPath: string, rows: readonly unknown[]): void {
   const body = rows.map((r) => JSON.stringify(r)).join("\n") + (rows.length > 0 ? "\n" : "");
   writeFileSync(absPath, body, { encoding: "utf8" });
 }
 
-function sha256Of(absPath: string): string {
+export function sha256Of(absPath: string): string {
   return createHash("sha256").update(readFileSync(absPath)).digest("hex");
 }
 
@@ -342,7 +342,12 @@ async function main(): Promise<void> {
   console.log(`  data/private/history_train_dev_for_final.jsonl: ${historyForFinal.length} records (LOCAL ONLY, gitignored)`);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+// Guarded so importing helpers from this module (e.g. the DEV-only
+// materializer) never triggers the full TRAIN+DEV+FINAL_HOLDOUT run as a
+// side effect of the import.
+if (path.resolve(fileURLToPath(import.meta.url)) === path.resolve(process.argv[1] ?? "")) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

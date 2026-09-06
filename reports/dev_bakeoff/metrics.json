@@ -1,0 +1,26 @@
+{
+  "status": "BLOCKED",
+  "reason": "MODEL_CREDENTIAL_REQUIRED — no authorized real-model route was available, so no real-model DEV inference was run for any of A0/A1/A2/A3.",
+  "conditions": {
+    "A0_COLD": null,
+    "A1_RAW_RAG": null,
+    "A2_SCRAMBLED_MEMORY_CONTROL": null,
+    "A3_UNWRITTEN": null
+  },
+  "deltas": {
+    "A3_minus_A0_macroF1": null,
+    "A3_minus_A1_macroF1": null,
+    "A3_minus_A2_macroF1": null,
+    "A1_minus_A0_macroF1": null
+  },
+  "operational_counters": {
+    "model_call_count": 0,
+    "historical_search_call_count": 0,
+    "latency_ms": { "mean": null, "median": null, "p95": null },
+    "tokens": { "input": null, "output": null },
+    "errors": 0,
+    "retries": 0
+  },
+  "note_on_placeholder_plumbing": "scripts/eval-dev-bakeoff.ts was executed as a wiring smoke test only (fixed non-model predictor, all 66 DEV items scored=66/errored=0 for all four conditions). Its output is explicitly labeled 'PLACEHOLDER PREDICTOR ... NOT a benchmark result' by the script itself and is not a metric — do not treat any number from that run as a Macro-F1 or accuracy result.",
+  "note_on_prior_hardness_probe": "A separate, non-canonical GATE 01C manual hardness probe (docs/EVAL_CONTRACT.md §12.5, data/gate01c_manifests/dev_cold_baseline_results.json) recorded macro-F1 0.6042 on DEV using a fixed manual heuristic, not this repository's A0/A1/A2/A3 predictors. It is historical context only and is not comparable to, and must not be conflated with, a canonical A0/A1/A2/A3 real-model result."
+}
