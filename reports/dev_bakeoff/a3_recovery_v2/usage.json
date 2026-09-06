@@ -1,0 +1,39 @@
+{
+  "condition": "A3",
+  "total_predictions": 66,
+  "complete_predictions": 66,
+  "errored_predictions": 0,
+  "total_model_calls": 66,
+  "retries": 0,
+  "parse_failures_after_retry": 0,
+  "total_cost_usd": 1.6341966000000006,
+  "run_wall_clock_ms": 287787,
+  "latency_ms": {
+    "mean": 16263.818181818182,
+    "median": 15797,
+    "p95": 19932
+  },
+  "historical_search_calls": 66,
+  "fraction_dev_items_searched": 1,
+  "web_search_requests_total": 0,
+  "web_fetch_requests_total": 0,
+  "subagents_spawned_total": 0,
+  "aggregate_model_usage": {
+    "claude-sonnet-5": {
+      "inputTokens": 132,
+      "outputTokens": 2986,
+      "cacheReadInputTokens": 162013,
+      "cacheCreationInputTokens": 341866,
+      "costUSD": 1.4299906000000002,
+      "calls": 66
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 200786,
+      "outputTokens": 684,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "costUSD": 0.20420599999999992,
+      "calls": 45
+    }
+  }
+}
