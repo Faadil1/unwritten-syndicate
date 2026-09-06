@@ -1,0 +1,430 @@
+{
+  "protocol": "Fixed, single-pass manual classification by the orchestrator LLM (Claude Sonnet 5), reading only issue title + first ~600 chars of body, no comments, no labels, no history search, no ground truth exposure during prediction. One fixed heuristic applied uniformly: predict RESOLVED_COMPLETED unless the report reads as spam/placeholder text, a vague unreproducible environment/config complaint, a pure discussion/design musing with no concrete scoped ask, or a support question rather than a report — those predicted RESOLVED_NO_NEW_WORK. No retries; single pass.",
+  "dev_ids_used": [
+    594,
+    600,
+    606,
+    608,
+    610,
+    617,
+    623,
+    627,
+    630,
+    633,
+    634,
+    635,
+    636,
+    649,
+    656,
+    657,
+    658,
+    666,
+    670,
+    672,
+    674,
+    678,
+    679,
+    682,
+    683,
+    685,
+    686,
+    688,
+    689,
+    693,
+    695,
+    696,
+    699,
+    704,
+    712,
+    720,
+    721,
+    723,
+    725,
+    726,
+    732,
+    737,
+    738,
+    743,
+    744,
+    748,
+    750,
+    752,
+    753,
+    755,
+    756,
+    758,
+    759,
+    763,
+    764,
+    766,
+    771,
+    773,
+    779,
+    780,
+    783,
+    784,
+    788,
+    790,
+    794,
+    796
+  ],
+  "n": 66,
+  "macro_f1": 0.6042,
+  "accuracy": 0.7424,
+  "per_class": {
+    "RESOLVED_COMPLETED": {
+      "precision": 0.898,
+      "recall": 0.7857,
+      "f1": 0.8381,
+      "support": 56
+    },
+    "RESOLVED_NO_NEW_WORK": {
+      "precision": 0.2941,
+      "recall": 0.5,
+      "f1": 0.3704,
+      "support": 10
+    }
+  },
+  "confusion_matrix": {
+    "truth=RESOLVED_COMPLETED": {
+      "pred_RESOLVED_COMPLETED": 44,
+      "pred_RESOLVED_NO_NEW_WORK": 12
+    },
+    "truth=RESOLVED_NO_NEW_WORK": {
+      "pred_RESOLVED_COMPLETED": 5,
+      "pred_RESOLVED_NO_NEW_WORK": 5
+    }
+  },
+  "predictions": [
+    {
+      "number": 594,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 600,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 606,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 608,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_NO_NEW_WORK"
+    },
+    {
+      "number": 610,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 617,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_NO_NEW_WORK"
+    },
+    {
+      "number": 623,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 627,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 630,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 633,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 634,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 635,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 636,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 649,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 656,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_NO_NEW_WORK"
+    },
+    {
+      "number": 657,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_NO_NEW_WORK"
+    },
+    {
+      "number": 658,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 666,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 670,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_NO_NEW_WORK"
+    },
+    {
+      "number": 672,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 674,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 678,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_NO_NEW_WORK"
+    },
+    {
+      "number": 679,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 682,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 683,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 685,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 686,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 688,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 689,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_NO_NEW_WORK"
+    },
+    {
+      "number": 693,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 695,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 696,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 699,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 704,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 712,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 720,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 721,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 723,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 725,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_NO_NEW_WORK"
+    },
+    {
+      "number": 726,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 732,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 737,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_NO_NEW_WORK"
+    },
+    {
+      "number": 738,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 743,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 744,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_NO_NEW_WORK"
+    },
+    {
+      "number": 748,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 750,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 752,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 753,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 755,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 756,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 758,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 759,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 763,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 764,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 766,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 771,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 773,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 779,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 780,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 783,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 784,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 788,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 790,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 794,
+      "prediction": "RESOLVED_NO_NEW_WORK",
+      "truth": "RESOLVED_COMPLETED"
+    },
+    {
+      "number": 796,
+      "prediction": "RESOLVED_COMPLETED",
+      "truth": "RESOLVED_COMPLETED"
+    }
+  ]
+}

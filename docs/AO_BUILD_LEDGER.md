@@ -1,7 +1,8 @@
-# AO_BUILD_LEDGER — GATE 01 / GATE 01B
+# AO_BUILD_LEDGER — GATE 01 / GATE 01B / GATE 01C
 
-See "GATE 01B" section near the end of this file for the second gate's
-ledger entries. Everything above that heading is unmodified from GATE 01.
+See "GATE 01B" and "GATE 01C" sections near the end of this file for the
+second and third gates' ledger entries. Everything above the "GATE 01B"
+heading is unmodified from GATE 01.
 
 Record of what actually happened in this session, limited to what is
 genuinely visible to this harness. No AO session IDs, worktree IDs, or
@@ -187,3 +188,101 @@ future gates.
   GATE 02, see IMPLEMENTATION_PLAN.md.
 - The GATE 01 commit (`ee2e658...`) was not amended or rewritten; this
   gate's changes are a new commit.
+
+---
+
+## GATE 01C — FINAL BENCHMARK FREEZE
+
+### Session identity (unchanged from GATE 01/01B)
+
+- AO session ID: not exposed to harness
+- AO worktree ID/path metadata: not exposed to harness
+- Agent role: Orchestrator, continuing the same user-confirmed direct-edit
+  exception (docs-only, no code, no push) established for GATE 01 and
+  continued through GATE 01B without re-confirmation, per the same
+  reasoning recorded in the GATE 01B ledger entry.
+
+### Environment observed directly
+
+- Local project path acted on: `C:\Users\fboussari\Documents\unwritten-syndicate`.
+- Pre-existing commit before this gate: `959df60676d7ff5be5662a34db2fac24aafe80c4`
+  ("GATE 01B: redesign eval target after benchmark-hardness review").
+- `gh` CLI, `node` (v24.16.0) used identically to prior gates.
+- All GraphQL fetches, connected-component computation, boundary search,
+  and the manual cold-baseline read were performed in scratch files under
+  the OS temp directory, then only the derived manifests (issue number,
+  label, subtype, `createdAt`) and diagnostic results were copied into the
+  repository at `data/gate01c_manifests/` — no raw title/body/comment text
+  is committed anywhere in this repository.
+
+### Actions performed this gate (chronological)
+
+1. Computed the TRAIN+DEV (pre-GATE-01B-T2) time-to-resolution distribution
+   for the 389 eligible resolved issues (p50 13.0 days, p75 62.1 days, p90
+   152.7 days, p95 183.9 days) and chose a 60-day maturity lag from it,
+   before touching FINAL_HOLDOUT or any model.
+2. Recomputed the eligible-before-maturity population (374 of 443 total
+   eligible-resolved issues; 69 dropped as too-immature) and searched for
+   the smallest FINAL_HOLDOUT window satisfying total ≥ 50 and
+   `RESOLVED_NO_NEW_WORK` ≥ 15 — found an initial 86-issue window, then had
+   to grow it to 92 (pre-exclusion) / 88 (post-exclusion) once the §12.4
+   duplicate-family exclusion was applied and reduced the raw minority
+   count below the floor.
+3. Fetched `title`, `body`, and up to 15 comments for all 443
+   eligible-resolved issues in 12 batched GraphQL queries (40 issues per
+   batch), then built a cross-reference graph via regex `#\d+` extraction
+   and union-find connected-components, finding 28 multi-issue groups (85
+   edges total).
+4. Checked all 28 groups against the new TRAIN/DEV/HOLDOUT boundaries;
+   found 7 groups crossing a real-partition boundary (14 issue instances)
+   and excluded them from evaluation.
+5. Finalized boundaries: T1 = 2025-07-09T16:01:24Z, T2 =
+   2025-09-13T06:19:40Z, maturity cutoff = 2026-07-08T00:08:45Z. Final
+   counts: TRAIN 206 (176/30), DEV 66 (56/10), FINAL_HOLDOUT 88 (73/15).
+6. Extracted title+body (no labels/stateReason) for all 66 final DEV
+   issues into a blind-review file, and manually applied one fixed
+   classification protocol (predict `RESOLVED_COMPLETED` unless the report
+   reads as spam/vague/off-topic/discussion-only/support-question) across
+   all 66, recording predictions before comparing to ground truth.
+7. Scored the 66 predictions against ground truth: macro-F1 0.6042,
+   accuracy 0.7424, confusion matrix and per-class P/R/F1 computed and
+   saved to `data/gate01c_manifests/dev_cold_baseline_results.json`.
+8. Built final manifests (`manifest_train.json`, `manifest_dev.json`,
+   `manifest_final_holdout.json`, `manifest_excluded_duplicate_families.json`)
+   containing only issue number, binary label, evaluator-only subtype, and
+   `createdAt` — no body/title/comment text — and computed SHA-256 hashes
+   for each, recorded in `manifest_hashes.txt`. Verified hashes match after
+   copying files into the repository (byte-identical).
+9. Rewrote `docs/EVAL_CONTRACT.md` §12–§15 (GATE 01C sections, appended;
+   §0–§11 preserved from GATE 01B), updated `docs/PROJECT_SPEC.md` (§3B
+   pointer updated to reference the frozen names/counts),
+   `docs/IMPLEMENTATION_PLAN.md` (rewritten GATE 02/03 plans against the
+   frozen manifests), and appended this GATE 01C section to
+   `docs/AO_BUILD_LEDGER.md`.
+10. Committed the four updated documentation files plus the new
+    `data/gate01c_manifests/` directory to `main` as a new commit (not an
+    amend). No push performed.
+
+### Commit produced by this gate
+
+- SHA: recorded in the "J. new commit SHA" line of the final gate report
+  returned to the human (see repository `git log` for the authoritative
+  record).
+
+### Explicitly not done in GATE 01C
+
+- No agent code (PolicyAgent, Reflector, rulebook/memory engine, learning
+  rounds, demo UI) was implemented.
+- No push to the remote GitHub repository was performed.
+- No `data/train.jsonl`/`data/dev.jsonl`/`data/final_holdout.jsonl` with
+  title/body text was materialized — only the number/label/subtype/date
+  manifests and diagnostic results, per COMPLIANCE.md scope. Full-text
+  dataset materialization remains GATE 02.
+- No standalone model API call was made for the cold baseline (§12.5); the
+  orchestrator LLM itself served as the "intended underlying model," which
+  is disclosed explicitly in EVAL_CONTRACT.md §12.5 rather than presented
+  as an independent third-party baseline.
+- FINAL_HOLDOUT was not touched by the cold-baseline run (§12.5 used DEV
+  only, per instruction).
+- Prior commits (`ee2e658...`, `959df60...`) were not amended or rewritten;
+  this gate's changes are a new commit.

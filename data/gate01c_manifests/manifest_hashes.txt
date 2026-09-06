@@ -1,0 +1,11 @@
+SHA256 manifest hashes — GATE 01C freeze
+Computed 2026-09-06 via: node -e "crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex')"
+
+manifest_train.json              c243be0d21cf375b63d6474c99fb38d75613597d581ca30475882ab4c36d089a
+manifest_dev.json                ac4e4e075f32d62689ac1bd9acf540a051588515798bf3c5c2684491a1eb7579
+manifest_final_holdout.json      09a9a3077c27cb454b8733eccf248e2d9771fbdf82e40da84bd74cc38dd296f6
+manifest_excluded_duplicate_families.json  2bd6ab925e731250713a1223e20be1e784e3a73662b776c273553cd61d92f09e
+
+Any future modification to these four files (including re-fetching from
+GitHub and re-generating) must produce identical hashes, or the change must
+be treated as a new gate (re-freeze), not a silent update.

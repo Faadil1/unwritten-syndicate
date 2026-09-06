@@ -1,0 +1,1238 @@
+[
+  {
+    "number": 76,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-11-25T23:40:07Z"
+  },
+  {
+    "number": 77,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-11-26T03:55:52Z"
+  },
+  {
+    "number": 80,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-11-26T17:37:42Z"
+  },
+  {
+    "number": 83,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-11-26T19:59:56Z"
+  },
+  {
+    "number": 84,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-11-27T11:06:11Z"
+  },
+  {
+    "number": 90,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-11-27T19:36:06Z"
+  },
+  {
+    "number": 92,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-11-29T07:34:13Z"
+  },
+  {
+    "number": 93,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-11-29T18:21:52Z"
+  },
+  {
+    "number": 94,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-11-29T20:45:54Z"
+  },
+  {
+    "number": 96,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-11-30T20:45:31Z"
+  },
+  {
+    "number": 97,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-12-01T09:16:48Z"
+  },
+  {
+    "number": 106,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-12-07T10:11:07Z"
+  },
+  {
+    "number": 109,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-12-10T04:07:59Z"
+  },
+  {
+    "number": 110,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-12-11T14:39:24Z"
+  },
+  {
+    "number": 111,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-12-13T04:13:08Z"
+  },
+  {
+    "number": 114,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2024-12-17T22:32:19Z"
+  },
+  {
+    "number": 129,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-01-22T06:08:41Z"
+  },
+  {
+    "number": 130,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-01-22T19:19:03Z"
+  },
+  {
+    "number": 137,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-01-31T16:17:10Z"
+  },
+  {
+    "number": 138,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-01-31T16:18:10Z"
+  },
+  {
+    "number": 140,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-02-05T15:41:24Z"
+  },
+  {
+    "number": 141,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-02-06T04:48:34Z"
+  },
+  {
+    "number": 142,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-02-06T10:32:13Z"
+  },
+  {
+    "number": 149,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-02-14T15:24:44Z"
+  },
+  {
+    "number": 154,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-02-20T20:42:58Z"
+  },
+  {
+    "number": 160,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-01T01:21:15Z"
+  },
+  {
+    "number": 163,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-05T17:05:22Z"
+  },
+  {
+    "number": 167,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-07T03:35:16Z"
+  },
+  {
+    "number": 168,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-03-07T04:29:03Z"
+  },
+  {
+    "number": 171,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-10T04:08:04Z"
+  },
+  {
+    "number": 172,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "DUPLICATE",
+    "created_at": "2025-03-10T12:47:00Z"
+  },
+  {
+    "number": 173,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-10T12:48:58Z"
+  },
+  {
+    "number": 179,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-11T08:58:20Z"
+  },
+  {
+    "number": 181,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-11T19:57:35Z"
+  },
+  {
+    "number": 183,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-12T03:13:07Z"
+  },
+  {
+    "number": 184,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-12T04:13:19Z"
+  },
+  {
+    "number": 187,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-15T02:43:27Z"
+  },
+  {
+    "number": 190,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-16T20:48:43Z"
+  },
+  {
+    "number": 192,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-17T07:11:24Z"
+  },
+  {
+    "number": 194,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-18T10:14:38Z"
+  },
+  {
+    "number": 197,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-19T16:52:03Z"
+  },
+  {
+    "number": 199,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-20T11:42:51Z"
+  },
+  {
+    "number": 202,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-20T18:12:46Z"
+  },
+  {
+    "number": 205,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-22T16:40:35Z"
+  },
+  {
+    "number": 209,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-24T10:44:17Z"
+  },
+  {
+    "number": 212,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-24T17:48:42Z"
+  },
+  {
+    "number": 214,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-25T00:18:18Z"
+  },
+  {
+    "number": 215,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-27T08:48:24Z"
+  },
+  {
+    "number": 219,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-27T21:13:35Z"
+  },
+  {
+    "number": 220,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-28T00:43:44Z"
+  },
+  {
+    "number": 221,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-28T05:36:39Z"
+  },
+  {
+    "number": 222,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-28T08:59:29Z"
+  },
+  {
+    "number": 223,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-28T12:53:41Z"
+  },
+  {
+    "number": 225,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-28T23:28:03Z"
+  },
+  {
+    "number": 226,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-29T10:17:15Z"
+  },
+  {
+    "number": 230,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-29T22:33:53Z"
+  },
+  {
+    "number": 231,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-29T22:37:37Z"
+  },
+  {
+    "number": 232,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-30T16:44:49Z"
+  },
+  {
+    "number": 237,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-03-31T23:35:46Z"
+  },
+  {
+    "number": 239,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-01T04:27:57Z"
+  },
+  {
+    "number": 240,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-01T08:38:33Z"
+  },
+  {
+    "number": 245,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-01T21:19:07Z"
+  },
+  {
+    "number": 248,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-02T03:46:14Z"
+  },
+  {
+    "number": 249,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-02T07:18:05Z"
+  },
+  {
+    "number": 250,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-02T20:03:53Z"
+  },
+  {
+    "number": 251,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-02T21:18:31Z"
+  },
+  {
+    "number": 252,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-02T21:27:37Z"
+  },
+  {
+    "number": 254,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-03T00:28:31Z"
+  },
+  {
+    "number": 255,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-03T02:54:01Z"
+  },
+  {
+    "number": 267,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-04-04T19:00:13Z"
+  },
+  {
+    "number": 268,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-05T01:02:17Z"
+  },
+  {
+    "number": 269,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-05T01:09:59Z"
+  },
+  {
+    "number": 273,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-05T10:41:10Z"
+  },
+  {
+    "number": 281,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-08T02:34:35Z"
+  },
+  {
+    "number": 282,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-08T06:31:00Z"
+  },
+  {
+    "number": 283,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-04-08T19:38:22Z"
+  },
+  {
+    "number": 285,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-08T23:20:42Z"
+  },
+  {
+    "number": 287,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-09T07:19:34Z"
+  },
+  {
+    "number": 289,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-09T15:06:09Z"
+  },
+  {
+    "number": 292,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-09T18:01:08Z"
+  },
+  {
+    "number": 293,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-09T19:57:45Z"
+  },
+  {
+    "number": 296,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-10T12:42:51Z"
+  },
+  {
+    "number": 297,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-10T12:52:19Z"
+  },
+  {
+    "number": 299,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-12T12:18:59Z"
+  },
+  {
+    "number": 301,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-12T12:45:23Z"
+  },
+  {
+    "number": 302,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-04-12T14:04:40Z"
+  },
+  {
+    "number": 304,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-13T19:07:02Z"
+  },
+  {
+    "number": 305,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-14T02:12:11Z"
+  },
+  {
+    "number": 306,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-14T03:41:48Z"
+  },
+  {
+    "number": 307,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-14T04:05:50Z"
+  },
+  {
+    "number": 308,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-14T06:14:26Z"
+  },
+  {
+    "number": 309,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-14T09:41:59Z"
+  },
+  {
+    "number": 310,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "DUPLICATE",
+    "created_at": "2025-04-14T09:55:04Z"
+  },
+  {
+    "number": 313,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-14T19:11:37Z"
+  },
+  {
+    "number": 314,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-04-15T12:53:34Z"
+  },
+  {
+    "number": 319,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-16T06:33:56Z"
+  },
+  {
+    "number": 323,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-17T03:24:58Z"
+  },
+  {
+    "number": 325,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "DUPLICATE",
+    "created_at": "2025-04-17T20:25:41Z"
+  },
+  {
+    "number": 326,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-17T20:26:36Z"
+  },
+  {
+    "number": 328,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-18T03:10:00Z"
+  },
+  {
+    "number": 329,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-18T07:21:37Z"
+  },
+  {
+    "number": 331,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-18T11:00:05Z"
+  },
+  {
+    "number": 335,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-20T06:16:19Z"
+  },
+  {
+    "number": 336,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "DUPLICATE",
+    "created_at": "2025-04-20T18:40:49Z"
+  },
+  {
+    "number": 337,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-20T19:33:47Z"
+  },
+  {
+    "number": 341,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-04-22T04:41:17Z"
+  },
+  {
+    "number": 342,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-22T15:30:11Z"
+  },
+  {
+    "number": 343,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-23T10:44:54Z"
+  },
+  {
+    "number": 344,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-23T19:52:43Z"
+  },
+  {
+    "number": 346,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-24T09:13:27Z"
+  },
+  {
+    "number": 347,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-24T11:12:06Z"
+  },
+  {
+    "number": 349,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-24T21:07:49Z"
+  },
+  {
+    "number": 351,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-25T16:18:44Z"
+  },
+  {
+    "number": 352,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-04-26T15:50:28Z"
+  },
+  {
+    "number": 353,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-28T14:18:17Z"
+  },
+  {
+    "number": 358,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-29T21:10:37Z"
+  },
+  {
+    "number": 359,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-30T08:54:05Z"
+  },
+  {
+    "number": 363,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-04-30T17:06:54Z"
+  },
+  {
+    "number": 364,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-04-30T17:56:01Z"
+  },
+  {
+    "number": 368,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-04-30T23:39:41Z"
+  },
+  {
+    "number": 369,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-01T05:15:20Z"
+  },
+  {
+    "number": 374,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-04T10:42:08Z"
+  },
+  {
+    "number": 375,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-05T00:35:39Z"
+  },
+  {
+    "number": 379,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-06T22:34:42Z"
+  },
+  {
+    "number": 381,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-07T03:07:21Z"
+  },
+  {
+    "number": 382,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-07T12:23:17Z"
+  },
+  {
+    "number": 384,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-07T21:30:48Z"
+  },
+  {
+    "number": 386,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-08T06:42:17Z"
+  },
+  {
+    "number": 389,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-08T15:25:33Z"
+  },
+  {
+    "number": 390,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-08T18:56:10Z"
+  },
+  {
+    "number": 391,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-09T00:21:23Z"
+  },
+  {
+    "number": 393,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-11T02:50:26Z"
+  },
+  {
+    "number": 394,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-11T19:48:17Z"
+  },
+  {
+    "number": 395,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-12T12:01:37Z"
+  },
+  {
+    "number": 396,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-12T17:25:03Z"
+  },
+  {
+    "number": 397,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-12T17:29:25Z"
+  },
+  {
+    "number": 398,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-12T19:16:27Z"
+  },
+  {
+    "number": 399,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-05-13T08:09:09Z"
+  },
+  {
+    "number": 401,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "DUPLICATE",
+    "created_at": "2025-05-13T20:19:18Z"
+  },
+  {
+    "number": 403,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-14T00:03:48Z"
+  },
+  {
+    "number": 405,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-14T07:12:39Z"
+  },
+  {
+    "number": 406,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-14T10:42:26Z"
+  },
+  {
+    "number": 409,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-05-15T06:59:31Z"
+  },
+  {
+    "number": 410,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-16T07:49:51Z"
+  },
+  {
+    "number": 411,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-16T10:09:22Z"
+  },
+  {
+    "number": 414,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-05-17T06:03:13Z"
+  },
+  {
+    "number": 416,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-19T06:01:31Z"
+  },
+  {
+    "number": 419,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-20T05:24:40Z"
+  },
+  {
+    "number": 420,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-20T05:54:42Z"
+  },
+  {
+    "number": 422,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-20T15:17:47Z"
+  },
+  {
+    "number": 429,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-22T18:36:25Z"
+  },
+  {
+    "number": 430,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-23T10:11:19Z"
+  },
+  {
+    "number": 431,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-23T16:57:04Z"
+  },
+  {
+    "number": 435,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-24T22:00:26Z"
+  },
+  {
+    "number": 436,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-24T22:36:15Z"
+  },
+  {
+    "number": 437,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-25T09:56:34Z"
+  },
+  {
+    "number": 439,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-05-25T13:43:15Z"
+  },
+  {
+    "number": 442,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-26T03:44:13Z"
+  },
+  {
+    "number": 447,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-27T07:32:43Z"
+  },
+  {
+    "number": 448,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-27T08:33:16Z"
+  },
+  {
+    "number": 450,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-27T11:17:55Z"
+  },
+  {
+    "number": 451,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-27T12:24:16Z"
+  },
+  {
+    "number": 452,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-27T13:39:16Z"
+  },
+  {
+    "number": 457,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-28T00:14:40Z"
+  },
+  {
+    "number": 465,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-28T22:34:47Z"
+  },
+  {
+    "number": 466,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-29T03:57:50Z"
+  },
+  {
+    "number": 467,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-29T05:49:30Z"
+  },
+  {
+    "number": 477,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-05-30T18:42:31Z"
+  },
+  {
+    "number": 484,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-03T17:46:33Z"
+  },
+  {
+    "number": 490,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-05T07:25:05Z"
+  },
+  {
+    "number": 491,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-05T07:54:20Z"
+  },
+  {
+    "number": 492,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-05T13:49:06Z"
+  },
+  {
+    "number": 493,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-05T16:04:37Z"
+  },
+  {
+    "number": 497,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-06-08T09:06:34Z"
+  },
+  {
+    "number": 498,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-08T20:15:43Z"
+  },
+  {
+    "number": 499,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-06-09T18:18:14Z"
+  },
+  {
+    "number": 501,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-11T06:51:24Z"
+  },
+  {
+    "number": 502,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-06-11T10:23:13Z"
+  },
+  {
+    "number": 508,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-14T05:34:53Z"
+  },
+  {
+    "number": 519,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-06-17T13:19:31Z"
+  },
+  {
+    "number": 525,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-06-18T08:24:20Z"
+  },
+  {
+    "number": 527,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-18T16:04:59Z"
+  },
+  {
+    "number": 530,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-19T03:24:32Z"
+  },
+  {
+    "number": 531,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-06-19T08:36:13Z"
+  },
+  {
+    "number": 536,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-19T19:44:12Z"
+  },
+  {
+    "number": 538,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-06-20T11:46:54Z"
+  },
+  {
+    "number": 539,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-06-20T18:03:46Z"
+  },
+  {
+    "number": 540,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-20T18:34:51Z"
+  },
+  {
+    "number": 541,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-06-20T19:24:46Z"
+  },
+  {
+    "number": 543,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-20T21:03:26Z"
+  },
+  {
+    "number": 551,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-23T13:37:00Z"
+  },
+  {
+    "number": 553,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-23T22:00:41Z"
+  },
+  {
+    "number": 556,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-24T20:00:51Z"
+  },
+  {
+    "number": 559,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-25T08:42:42Z"
+  },
+  {
+    "number": 561,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-25T15:11:06Z"
+  },
+  {
+    "number": 563,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-26T10:33:08Z"
+  },
+  {
+    "number": 566,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-27T10:10:28Z"
+  },
+  {
+    "number": 569,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "DUPLICATE",
+    "created_at": "2025-06-28T05:29:07Z"
+  },
+  {
+    "number": 570,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-28T16:08:24Z"
+  },
+  {
+    "number": 572,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "DUPLICATE",
+    "created_at": "2025-06-29T09:31:31Z"
+  },
+  {
+    "number": 573,
+    "label": "RESOLVED_NO_NEW_WORK",
+    "subtype": "NOT_PLANNED",
+    "created_at": "2025-06-29T15:22:26Z"
+  },
+  {
+    "number": 577,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-06-30T20:17:26Z"
+  },
+  {
+    "number": 580,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-07-01T11:34:19Z"
+  },
+  {
+    "number": 584,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-07-05T01:17:13Z"
+  },
+  {
+    "number": 586,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-07-07T19:42:42Z"
+  },
+  {
+    "number": 587,
+    "label": "RESOLVED_COMPLETED",
+    "subtype": "COMPLETED",
+    "created_at": "2025-07-08T06:09:38Z"
+  }
+]

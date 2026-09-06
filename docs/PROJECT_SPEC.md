@@ -1,8 +1,11 @@
-# PROJECT_SPEC — GATE 01 / GATE 01B
+# PROJECT_SPEC — GATE 01 / GATE 01B / GATE 01C
 
-Status: draft, produced under GATE 01 (SPEC + EVAL CONTRACT) and revised
-under GATE 01B (BENCHMARK HARDNESS + POLICY TARGET REDESIGN). No agent code
-has been implemented.
+Status: **benchmark FROZEN as of GATE 01C** (FINAL BENCHMARK FREEZE). No
+agent code has been implemented. See `docs/EVAL_CONTRACT.md` §12–§15 for
+the authoritative freeze record (final class names, split boundaries,
+manifests, hashes). §3B below is superseded in its exact class names and
+counts by EVAL_CONTRACT.md §12.1/§12.8 — kept here with a pointer rather
+than duplicated in full.
 
 **GATE 01B revision note:** the GATE 01 taxonomy (§3 below, "REJECTED" as
 of this revision) was rejected at eval-contract review for measuring
@@ -77,28 +80,40 @@ anything about how this team actually operates. See
 `docs/EVAL_CONTRACT.md` §0 and §3 (Candidate B/C hardness tests) for full
 detail.
 
-## 3B. Selected taxonomy (GATE 01B, in force)
+## 3B. Selected taxonomy (GATE 01B design; final names/counts frozen in GATE 01C)
 
 **Target: resolution policy for externally-reported issues.**
 
-- **`ACCEPTED`** — issue closed with GitHub `stateReason == COMPLETED`
-- **`NOT_ACCEPTED`** — issue closed with `stateReason ∈ {NOT_PLANNED, DUPLICATE}`
+- **`RESOLVED_COMPLETED`** — issue closed with GitHub `stateReason == COMPLETED`
+  (named `ACCEPTED` in the original GATE 01B draft; renamed in GATE 01C to
+  avoid overclaiming — see EVAL_CONTRACT.md §12.1)
+- **`RESOLVED_NO_NEW_WORK`** — issue closed with `stateReason ∈ {NOT_PLANNED, DUPLICATE}`
+  (named `NOT_ACCEPTED` in the original GATE 01B draft)
+
+This benchmark predicts the maintainers' recorded historical resolution
+disposition — not guaranteed future engineering effort, code quality, or
+issue validity (EVAL_CONTRACT.md §12.1).
 
 Scoped to issues opened by external contributors
 (`authorAssociation ∈ {NONE, FIRST_TIME_CONTRIBUTOR, CONTRIBUTOR}`),
 excluding issues closed via the v1→v2 administrative migration purge
-(`closed-v1-deprecated` / `closed-v1-security-declined` labels), and
-excluding still-open/unresolved issues (right-censored, not a confirmed
-`ACCEPTED`).
+(`closed-v1-deprecated` / `closed-v1-security-declined` labels), excluding
+still-open/unresolved issues (right-censored), and — as of GATE 01C —
+excluding issues created after a fixed 60-day maturity cutoff before
+snapshot time (resolution-speed censoring control) and excluding 14 issues
+belonging to cross-split duplicate/related-issue families. See
+EVAL_CONTRACT.md §12 for the complete, authoritative definition, exact
+split boundaries, frozen counts, cold-baseline results, and manifest
+hashes.
 
-Rationale: this reflects an actual team decision (does this get
-independent action, or not) that requires institutional knowledge —
-duplicate detection requires knowing prior issue history; "not planned"
-requires knowing this team's actual scope/priority boundaries, not just
-reading the request. Full hardness test, cold-baseline audit, and
+Rationale (unchanged from GATE 01B): this reflects an actual team decision
+(does this get independent action, or not) that requires institutional
+knowledge — duplicate detection requires knowing prior issue history; "not
+planned" requires knowing this team's actual scope/priority boundaries, not
+just reading the request. Full hardness test, cold-baseline audit, and
 duplicate cross-split protection are in `docs/EVAL_CONTRACT.md`.
 
-## 4. Non-goals for GATE 01 / GATE 01B
+## 4. Non-goals for GATE 01 / GATE 01B / GATE 01C
 
 The following are explicitly NOT built in this gate:
 
@@ -122,14 +137,19 @@ future gates.
   `author.login`; plus targeted `title`/`body`/`comments` fetches for (a) a
   fixed 25-issue DEV lexical-leakage audit sample and (b) the 20
   `DUPLICATE`-stateReason issues for cross-split duplicate-group detection.
-  See EVAL_CONTRACT.md §6–7.
-- No issue body/title text was downloaded for the bulk 1056-issue
-  population in either gate (only for the two targeted samples above).
-  Full body/title retrieval for feature extraction is deferred to GATE 02
-  and is subject to the compliance notes in COMPLIANCE.md.
+- Fields captured (GATE 01C, additive): `title`/`body`/`comments` for all
+  443 eligible-resolved issues (full-corpus duplicate sweep, see
+  EVAL_CONTRACT.md §12.4), used transiently for the sweep and the DEV
+  cold-baseline read (§12.5) but not committed to this repository as raw
+  text — only issue numbers, binary label, evaluator-only subtype, and
+  `createdAt` are committed, in `data/gate01c_manifests/`.
+- No issue body/title text is committed anywhere in this repository as of
+  GATE 01C. Full body/title retrieval for a materialized modeling dataset
+  (`data/train.jsonl` etc., with a redaction pass) remains deferred to
+  GATE 02, per COMPLIANCE.md.
 
 ## 6. Next gate
 
-`EVAL_CONTRACT_REVIEW_02_REQUIRED` — human review of the revised eval
-contract before any dataset materialization or agent implementation
-begins.
+`FINAL_BENCHMARK_FREEZE_REVIEW_REQUIRED` — human review of the frozen
+benchmark (manifests, hashes, cold-baseline results) before any dataset
+materialization or agent implementation begins.
